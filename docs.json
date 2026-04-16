@@ -51,18 +51,73 @@
         "tab": "API reference",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "General",
             "pages": [
               "api-reference/introduction"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Senders",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/senders/list",
+              "api-reference/senders/create",
+              "api-reference/senders/get",
+              "api-reference/senders/delete"
+            ]
+          },
+          {
+            "group": "Campaigns",
+            "pages": [
+              "api-reference/campaigns/list",
+              "api-reference/campaigns/create",
+              "api-reference/campaigns/send_now",
+              "api-reference/campaigns/send",
+              "api-reference/campaigns/schedule",
+              "api-reference/campaigns/performance",
+              "api-reference/campaigns/export",
+              "api-reference/campaigns/pause",
+              "api-reference/campaigns/resume",
+              "api-reference/campaigns/cancel"
+            ]
+          },
+          {
+            "group": "Audience & Lists",
+            "pages": [
+              "api-reference/audiences/list",
+              "api-reference/audiences/upsert",
+              "api-reference/audiences/bulk",
+              "api-reference/audiences/import",
+              "api-reference/audiences/list",
+              "api-reference/audiences/get_single",
+              "api-reference/audiences/get_recipients",
+              "api-reference/audiences/export"
+            ]
+          },
+          {
+            "group": "Templates",
+            "pages": [
+              "api-reference/templates/list",
+              "api-reference/templates/create",
+              "api-reference/templates/get_single"
+            ]
+          },
+          {
+            "group": "Univox Inbox",
+            "pages": [
+              "api-reference/univox/senders",
+              "api-reference/univox/inbox",
+              "api-reference/univox/message_detail",
+              "api-reference/univox/not_spam"
+            ]
+          },
+          {
+            "group": "Transactional API",
+            "pages": [
+              "api-reference/transactional/send",
+              "api-reference/transactional/bulk",
+              "api-reference/transactional/logs",
+              "api-reference/transactional/add_contact",
+              "api-reference/transactional/get_list"
             ]
           }
         ]
@@ -102,15 +157,15 @@
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
