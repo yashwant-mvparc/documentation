@@ -1,24 +1,24 @@
 ---
 title: 'Batch Transactional distribution'
-api: 'POST /emails/bulk'
+openapi: 'POST /emails/bulk'
 description: 'Execute a batch of transactional messages. You may provide a specific 'emails' array for unique payloads per user, or a 'list_id' to target an entire segment with 'common_params'.'
 ---
 
-### Body
+### Request Body
 
-<ParamField body="emails" type="ARRAY<OBJECT>" >
+<ParamField body="emails" type="ARRAY<OBJECT>">
   List of individual messages: [{to, recipient_id, params, name}]
 </ParamField>
 
-<ParamField body="list_id" type="UUID" >
+<ParamField body="list_id" type="UUID">
   Fetch all recipients from a specific list.
 </ParamField>
 
-<ParamField body="template_id" type="UUID" required>
+<ParamField body="template_id" type="UUID">
   REQUIRED. The design asset to use for this batch.
 </ParamField>
 
-<ParamField body="common_params" type="OBJECT" >
+<ParamField body="common_params" type="OBJECT">
   Global merge tags shared by all batch recipients.
 </ParamField>
 

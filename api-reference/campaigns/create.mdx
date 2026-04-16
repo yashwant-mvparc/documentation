@@ -1,48 +1,48 @@
 ---
 title: 'Create Campaign'
-api: 'POST /campaigns'
+openapi: 'POST /campaigns'
 description: 'Generate a new campaign draft.'
 ---
 
-### Body
+### Request Body
 
-<ParamField body="name" type="STRING" required>
+<ParamField body="name" type="STRING">
   Campaign internal name
 </ParamField>
 
-<ParamField body="subject" type="STRING" required>
+<ParamField body="subject" type="STRING">
   Email subject line
 </ParamField>
 
-<ParamField body="sender_email_id" type="UUID" required>
+<ParamField body="sender_email_id" type="UUID">
   Fetch from /sender-emails
 </ParamField>
 
-<ParamField body="template_id" type="UUID" required>
+<ParamField body="template_id" type="UUID">
   Fetch from /templates
 </ParamField>
 
-<ParamField body="preview_text" type="STRING" >
+<ParamField body="preview_text" type="STRING">
   Preview/Snippet text in inbox
 </ParamField>
 
-<ParamField body="recipient_list_ids" type="ARRAY<UUID>" >
+<ParamField body="recipient_list_ids" type="ARRAY<UUID>">
   Lists to target
 </ParamField>
 
-<ParamField body="recipients" type="ARRAY<OBJECT>" >
+<ParamField body="recipients" type="ARRAY<OBJECT>">
   Inline recipients [{email, name}]
 </ParamField>
 
-<ParamField body="scheduled_date" type="DATETIME" >
+<ParamField body="scheduled_date" type="DATETIME">
   ISO format for scheduling
 </ParamField>
 
-<ParamField body="status" type="STRING" >
+<ParamField body="status" type="STRING">
   Initial status (usually 'draft')
 </ParamField>
 
-<ParamField body="settings" type="OBJECT" >
+<ParamField body="settings" type="OBJECT">
   {track_opens: bool, track_clicks: bool, unsubscribe_link: bool}
 </ParamField>
 

@@ -1,40 +1,40 @@
 ---
 title: 'Send Transactional Email'
-api: 'POST /emails'
+openapi: 'POST /emails'
 description: 'Trigger a personalized email to a specific recipient. If the recipient does not exist in your CRM, they will be automatically created using the provided email and name.'
 ---
 
-### Body
+### Request Body
 
-<ParamField body="to" type="STRING" >
+<ParamField body="to" type="STRING">
   Target email address. Mandatory if recipient_id is not provided.
 </ParamField>
 
-<ParamField body="recipient_id" type="UUID" >
+<ParamField body="recipient_id" type="UUID">
   Target existing CRM contact ID. If provided, 'to' can be omitted.
 </ParamField>
 
-<ParamField body="template_id" type="UUID" >
+<ParamField body="template_id" type="UUID">
   Design asset ID. Required unless raw HTML/Subject are provided.
 </ParamField>
 
-<ParamField body="subject" type="STRING" >
+<ParamField body="subject" type="STRING">
   Override or provide custom subject line.
 </ParamField>
 
-<ParamField body="html" type="STRING" >
+<ParamField body="html" type="STRING">
   Direct HTML injection (bypasses template).
 </ParamField>
 
-<ParamField body="name" type="STRING" >
+<ParamField body="name" type="STRING">
   Recipient display name for CRM sync.
 </ParamField>
 
-<ParamField body="sender_id" type="UUID" >
+<ParamField body="sender_id" type="UUID">
   Specific verified sender ID. If omitted, organization default is used.
 </ParamField>
 
-<ParamField body="params" type="OBJECT" >
+<ParamField body="params" type="OBJECT">
   Merge tag values for dynamic personalization.
 </ParamField>
 

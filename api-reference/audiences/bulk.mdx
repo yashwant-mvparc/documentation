@@ -1,32 +1,32 @@
 ---
 title: 'Bulk Operations'
-api: 'POST /subscribers/bulk-operation'
+openapi: 'POST /subscribers/bulk-operation'
 description: 'Perform batch actions (add, remove, move, delete) on subscribers.'
 ---
 
-### Body
+### Request Body
 
-<ParamField body="operation" type="STRING" required>
+<ParamField body="operation" type="STRING">
   add, remove, move, delete
 </ParamField>
 
-<ParamField body="subscriberIds" type="UUID ARRAY" required>
+<ParamField body="subscriberIds" type="UUID ARRAY">
   List of IDs to update
 </ParamField>
 
-<ParamField body="targetListId" type="UUID" >
+<ParamField body="targetListId" type="UUID">
   Destination list ID
 </ParamField>
 
-<ParamField body="sourceListId" type="UUID" >
+<ParamField body="sourceListId" type="UUID">
   Origin list ID (for move)
 </ParamField>
 
-<ParamField body="selectAll" type="BOOLEAN" >
+<ParamField body="selectAll" type="BOOLEAN">
   Apply to all matching search/filter
 </ParamField>
 
-<ParamField body="excludedIds" type="UUID ARRAY" >
+<ParamField body="excludedIds" type="UUID ARRAY">
   IDs to skip if selectAll is true
 </ParamField>
 

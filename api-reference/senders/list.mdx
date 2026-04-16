@@ -1,28 +1,28 @@
 ---
 title: 'List Identities'
-api: 'GET /sender-emails'
+openapi: 'GET /sender-emails'
 description: 'Fetch all provisioned mailboxes, their delivery health, and verification states.'
 ---
 
-### Query Parameters
+### URL Parameters
 
-<ParamField query="page" type="INTEGER"  default="1">
+<ParamField query="page" type="INTEGER">
   Page number for pagination
 </ParamField>
 
-<ParamField query="provider" type="STRING"  >
+<ParamField query="provider" type="STRING">
   Filter by provider (aws_ses, gmail_smtp, etc.)
 </ParamField>
 
-<ParamField query="is_verified" type="BOOLEAN"  >
+<ParamField query="is_verified" type="BOOLEAN">
   Filter by verification status
 </ParamField>
 
-<ParamField query="is_active" type="BOOLEAN"  >
+<ParamField query="is_active" type="BOOLEAN">
   Filter by active status
 </ParamField>
 
-<ParamField query="search" type="STRING"  >
+<ParamField query="search" type="STRING">
   Search in name or email
 </ParamField>
 

@@ -1,20 +1,20 @@
 ---
 title: 'List Members'
-api: 'GET /lists/:id/recipients'
+openapi: 'GET /lists/{id}/recipients'
 description: 'Fetch all contacts belonging to a specific segment with pagination.'
 ---
 
-### Query Parameters
+### URL Parameters
 
-<ParamField query="page" type="INTEGER"  default="1">
+<ParamField query="page" type="INTEGER">
   Page number
 </ParamField>
 
-<ParamField query="limit" type="INTEGER"  default="50">
+<ParamField query="limit" type="INTEGER">
   Number of records per page
 </ParamField>
 
-<ParamField query="search" type="STRING"  >
+<ParamField query="search" type="STRING">
   Search by email or name within the list
 </ParamField>
 

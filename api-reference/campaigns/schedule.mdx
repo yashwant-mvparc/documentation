@@ -1,16 +1,16 @@
 ---
 title: 'Schedule Delivery'
-api: 'POST /campaigns/:id/schedule'
+openapi: 'POST /campaigns/{id}/schedule'
 description: 'Set a future date for broadcast.'
 ---
 
-### Body
+### Request Body
 
-<ParamField body="scheduled_date" type="DATETIME" required>
+<ParamField body="scheduled_date" type="DATETIME">
   ISO8601 timestamp
 </ParamField>
 
-<ParamField body="timezone" type="STRING" >
+<ParamField body="timezone" type="STRING">
   IANA timezone (e.g. UTC, Asia/Kolkata)
 </ParamField>
 
