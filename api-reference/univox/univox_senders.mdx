@@ -1,0 +1,26 @@
+---
+title: 'List Inbox Senders'
+description: 'Fetch all identities capable of receiving inbound messages (Gmail OAuth, WildDuck, Stalwart IMAP).'
+---
+
+### GET /inbox/senders
+
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "senders": [
+      {
+        "id": "sender-1",
+        "email": "support@platform.io",
+        "provider": "gmail_oauth"
+      }
+    ]
+  }
+}
+```
+
+</ResponseExample>

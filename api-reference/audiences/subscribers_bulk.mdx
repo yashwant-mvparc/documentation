@@ -1,0 +1,62 @@
+---
+title: 'Bulk Operations'
+description: 'Perform batch actions (add, remove, move, delete) on subscribers.'
+---
+
+### POST /subscribers/bulk-operation
+
+#### Request Body
+
+<ParamField body="operation" type="STRING" required>
+  add, remove, move, delete
+</ParamField>
+
+<ParamField body="subscriberIds" type="UUID ARRAY" required>
+  List of IDs to update
+</ParamField>
+
+<ParamField body="targetListId" type="UUID" >
+  Destination list ID
+</ParamField>
+
+<ParamField body="sourceListId" type="UUID" >
+  Origin list ID (for move)
+</ParamField>
+
+<ParamField body="selectAll" type="BOOLEAN" >
+  Apply to all matching search/filter
+</ParamField>
+
+<ParamField body="excludedIds" type="UUID ARRAY" >
+  IDs to skip if selectAll is true
+</ParamField>
+
+
+<RequestExample>
+
+```json Request
+{
+  "operation": "move",
+  "subscriberIds": [
+    "88de"
+  ],
+  "targetListId": "99de",
+  "sourceListId": "a0ee"
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "count": 1
+  },
+  "message": "Bulk operation completed successfully."
+}
+```
+
+</ResponseExample>

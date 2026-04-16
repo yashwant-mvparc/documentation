@@ -1,0 +1,30 @@
+---
+title: 'Performance Data'
+description: 'High-level metrics (sent, opened, clicked, bounced).'
+---
+
+### GET /campaigns/:id/performance
+
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "campaign": {
+      "id": "902b-8ccf",
+      "name": "Summer Sale",
+      "status": "completed"
+    },
+    "performance": {
+      "total_sent": 45000,
+      "delivered": 44900,
+      "open_rate": 0.15,
+      "click_rate": 0.02
+    }
+  }
+}
+```
+
+</ResponseExample>

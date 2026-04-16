@@ -1,0 +1,46 @@
+---
+title: 'List Members'
+description: 'Fetch all contacts belonging to a specific segment with pagination.'
+---
+
+### GET /lists/:id/recipients
+
+#### URL Parameters
+
+<ParamField query="page" type="INTEGER" >
+  Page number
+</ParamField>
+
+<ParamField query="limit" type="INTEGER" >
+  Number of records per page
+</ParamField>
+
+<ParamField query="search" type="STRING" >
+  Search by email or name within the list
+</ParamField>
+
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "recipients": [
+      {
+        "id": "rec-123",
+        "email": "user@segment.com",
+        "is_subscribed": true
+      }
+    ],
+    "pagination": {
+      "total": 450,
+      "page": 1,
+      "limit": 50,
+      "pages": 9
+    }
+  }
+}
+```
+
+</ResponseExample>

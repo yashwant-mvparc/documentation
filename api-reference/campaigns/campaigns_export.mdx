@@ -1,0 +1,17 @@
+---
+title: 'Export Report'
+description: 'Download full campaign report in multiple formats.'
+---
+
+### GET /campaigns/:id/export
+
+#### URL Parameters
+
+<ParamField query="format" type="STRING" >
+  csv, xlsx, pdf
+</ParamField>
+
+<ParamField query="type" type="STRING" >
+  recipients, analytics, full
+</ParamField>
+

@@ -1,0 +1,49 @@
+---
+title: 'Bulk Import'
+description: 'Ingest batch of contacts via background worker.'
+---
+
+### POST /subscribers/import
+
+#### Request Body
+
+<ParamField body="contacts" type="ARRAY<OBJECT>" required>
+  List of {email, name, list_name, tags}
+</ParamField>
+
+<ParamField body="recipient_list_ids" type="ARRAY<UUID>" >
+  Lists to add to
+</ParamField>
+
+
+<RequestExample>
+
+```json Request
+{
+  "contacts": [
+    {
+      "email": "john@domain.com",
+      "name": "John"
+    }
+  ]
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "total": 2,
+    "created": 2,
+    "updated": 0,
+    "skipped": 0
+  },
+  "message": "Subscribers imported successfully via API key."
+}
+```
+
+</ResponseExample>

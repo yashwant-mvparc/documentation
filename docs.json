@@ -59,65 +59,65 @@
           {
             "group": "Senders",
             "pages": [
-              "api-reference/senders/list",
-              "api-reference/senders/create",
-              "api-reference/senders/get",
-              "api-reference/senders/delete"
+              "api-reference/senders/senders_list",
+              "api-reference/senders/senders_create",
+              "api-reference/senders/senders_get",
+              "api-reference/senders/senders_delete"
             ]
           },
           {
             "group": "Campaigns",
             "pages": [
-              "api-reference/campaigns/list",
-              "api-reference/campaigns/create",
-              "api-reference/campaigns/send_now",
-              "api-reference/campaigns/send",
-              "api-reference/campaigns/schedule",
-              "api-reference/campaigns/performance",
-              "api-reference/campaigns/export",
-              "api-reference/campaigns/pause",
-              "api-reference/campaigns/resume",
-              "api-reference/campaigns/cancel"
+              "api-reference/campaigns/campaigns_list",
+              "api-reference/campaigns/campaigns_create",
+              "api-reference/campaigns/campaigns_send_now",
+              "api-reference/campaigns/campaigns_send",
+              "api-reference/campaigns/campaigns_schedule",
+              "api-reference/campaigns/campaigns_performance",
+              "api-reference/campaigns/campaigns_export",
+              "api-reference/campaigns/campaigns_pause",
+              "api-reference/campaigns/campaigns_resume",
+              "api-reference/campaigns/campaigns_cancel"
             ]
           },
           {
             "group": "Audience & Lists",
             "pages": [
-              "api-reference/audiences/list",
-              "api-reference/audiences/upsert",
-              "api-reference/audiences/bulk",
-              "api-reference/audiences/import",
-              "api-reference/audiences/list",
-              "api-reference/audiences/get_single",
-              "api-reference/audiences/get_recipients",
-              "api-reference/audiences/export"
+              "api-reference/audiences/subscribers_list",
+              "api-reference/audiences/subscribers_upsert",
+              "api-reference/audiences/subscribers_bulk",
+              "api-reference/audiences/subscribers_import",
+              "api-reference/audiences/lists_list",
+              "api-reference/audiences/lists_get_single",
+              "api-reference/audiences/lists_get_recipients",
+              "api-reference/audiences/lists_export"
             ]
           },
           {
             "group": "Templates",
             "pages": [
-              "api-reference/templates/list",
-              "api-reference/templates/create",
-              "api-reference/templates/get_single"
+              "api-reference/templates/templates_list",
+              "api-reference/templates/templates_create",
+              "api-reference/templates/templates_get_single"
             ]
           },
           {
             "group": "Univox Inbox",
             "pages": [
-              "api-reference/univox/senders",
-              "api-reference/univox/inbox",
-              "api-reference/univox/message_detail",
-              "api-reference/univox/not_spam"
+              "api-reference/univox/univox_senders",
+              "api-reference/univox/univox_inbox",
+              "api-reference/univox/univox_message_detail",
+              "api-reference/univox/univox_not_spam"
             ]
           },
           {
             "group": "Transactional API",
             "pages": [
-              "api-reference/transactional/send",
-              "api-reference/transactional/bulk",
-              "api-reference/transactional/logs",
-              "api-reference/transactional/add_contact",
-              "api-reference/transactional/get_list"
+              "api-reference/transactional/transactional_send",
+              "api-reference/transactional/transactional_bulk",
+              "api-reference/transactional/transactional_logs",
+              "api-reference/transactional/transactional_add_contact",
+              "api-reference/transactional/transactional_get_list"
             ]
           }
         ]

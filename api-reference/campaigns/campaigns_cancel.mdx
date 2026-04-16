@@ -1,0 +1,21 @@
+---
+title: 'Terminate Broadcast'
+description: 'Abort a scheduled or sending campaign permanently.'
+---
+
+### POST /campaigns/:id/cancel
+
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "status": "cancelled",
+    "message": "Campaign cancelled successfully"
+  }
+}
+```
+
+</ResponseExample>
