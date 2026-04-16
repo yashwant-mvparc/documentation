@@ -6,11 +6,11 @@ description: 'Set a future date for broadcast.'
 
 ### Request Body
 
-<ParamField body="scheduled_date" type="DATETIME">
+<ParamField body="scheduled_date" type="DATETIME" required>
   ISO8601 timestamp
 </ParamField>
 
-<ParamField body="timezone" type="STRING">
+<ParamField body="timezone" type="STRING" >
   IANA timezone (e.g. UTC, Asia/Kolkata)
 </ParamField>
 

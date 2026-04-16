@@ -6,43 +6,43 @@ description: 'Generate a new campaign draft.'
 
 ### Request Body
 
-<ParamField body="name" type="STRING">
+<ParamField body="name" type="STRING" required>
   Campaign internal name
 </ParamField>
 
-<ParamField body="subject" type="STRING">
+<ParamField body="subject" type="STRING" required>
   Email subject line
 </ParamField>
 
-<ParamField body="sender_email_id" type="UUID">
+<ParamField body="sender_email_id" type="UUID" required>
   Fetch from /sender-emails
 </ParamField>
 
-<ParamField body="template_id" type="UUID">
+<ParamField body="template_id" type="UUID" required>
   Fetch from /templates
 </ParamField>
 
-<ParamField body="preview_text" type="STRING">
+<ParamField body="preview_text" type="STRING" >
   Preview/Snippet text in inbox
 </ParamField>
 
-<ParamField body="recipient_list_ids" type="ARRAY<UUID>">
+<ParamField body="recipient_list_ids" type="ARRAY<UUID>" >
   Lists to target
 </ParamField>
 
-<ParamField body="recipients" type="ARRAY<OBJECT>">
+<ParamField body="recipients" type="ARRAY<OBJECT>" >
   Inline recipients [{email, name}]
 </ParamField>
 
-<ParamField body="scheduled_date" type="DATETIME">
+<ParamField body="scheduled_date" type="DATETIME" >
   ISO format for scheduling
 </ParamField>
 
-<ParamField body="status" type="STRING">
+<ParamField body="status" type="STRING" >
   Initial status (usually 'draft')
 </ParamField>
 
-<ParamField body="settings" type="OBJECT">
+<ParamField body="settings" type="OBJECT" >
   {track_opens: bool, track_clicks: bool, unsubscribe_link: bool}
 </ParamField>
 

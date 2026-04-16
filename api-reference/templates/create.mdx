@@ -6,19 +6,19 @@ description: 'Stage a raw HTML layout for campaign injection.'
 
 ### Request Body
 
-<ParamField body="name" type="STRING">
+<ParamField body="name" type="STRING" required>
   Internal template display name
 </ParamField>
 
-<ParamField body="content" type="STRING">
+<ParamField body="content" type="STRING" required>
   Full HTML body
 </ParamField>
 
-<ParamField body="subject" type="STRING">
+<ParamField body="subject" type="STRING" >
   Default subject line for this template
 </ParamField>
 
-<ParamField body="preview_text" type="STRING">
+<ParamField body="preview_text" type="STRING" >
   Inbox snippet text
 </ParamField>
 

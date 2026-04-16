@@ -6,35 +6,35 @@ description: 'Create and start a campaign in one go.'
 
 ### Request Body
 
-<ParamField body="subject" type="STRING">
+<ParamField body="subject" type="STRING" required>
   Email subject
 </ParamField>
 
-<ParamField body="sender_id" type="UUID">
+<ParamField body="sender_id" type="UUID" required>
   Verified sender ID
 </ParamField>
 
-<ParamField body="name" type="STRING">
+<ParamField body="name" type="STRING" >
   Optional name
 </ParamField>
 
-<ParamField body="body" type="STRING">
+<ParamField body="body" type="STRING" >
   Raw HTML content (creates dynamic template)
 </ParamField>
 
-<ParamField body="template_id" type="UUID">
+<ParamField body="template_id" type="UUID" >
   Template ID
 </ParamField>
 
-<ParamField body="recipient_list_ids" type="ARRAY<UUID>">
+<ParamField body="recipient_list_ids" type="ARRAY<UUID>" >
   List IDs to target
 </ParamField>
 
-<ParamField body="recipients" type="ARRAY<OBJECT>">
+<ParamField body="recipients" type="ARRAY<OBJECT>" >
   List of {email, name}
 </ParamField>
 
-<ParamField body="preview_text" type="STRING">
+<ParamField body="preview_text" type="STRING" >
   Inbox snippet
 </ParamField>
 

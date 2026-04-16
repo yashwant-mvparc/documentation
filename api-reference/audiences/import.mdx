@@ -6,11 +6,11 @@ description: 'Ingest batch of contacts via background worker.'
 
 ### Request Body
 
-<ParamField body="contacts" type="ARRAY<OBJECT>">
+<ParamField body="contacts" type="ARRAY<OBJECT>" required>
   List of {email, name, list_name, tags}
 </ParamField>
 
-<ParamField body="recipient_list_ids" type="ARRAY<UUID>">
+<ParamField body="recipient_list_ids" type="ARRAY<UUID>" >
   Lists to add to
 </ParamField>
 

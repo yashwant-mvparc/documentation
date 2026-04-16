@@ -6,19 +6,19 @@ description: 'Directly inject a contact into a specific list from your messaging
 
 ### Request Body
 
-<ParamField body="email" type="STRING">
+<ParamField body="email" type="STRING" required>
   Recipient email address.
 </ParamField>
 
-<ParamField body="name" type="STRING">
+<ParamField body="name" type="STRING" >
   Recipient full name.
 </ParamField>
 
-<ParamField body="params" type="OBJECT">
+<ParamField body="params" type="OBJECT" >
   Custom fields / personalization metadata.
 </ParamField>
 
-<ParamField body="list_id" type="UUID">
+<ParamField body="list_id" type="UUID" required>
   The segment ID to bind this contact to.
 </ParamField>
 

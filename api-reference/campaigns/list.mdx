@@ -6,31 +6,31 @@ description: 'Global history of all broadcasts.'
 
 ### URL Parameters
 
-<ParamField query="page" type="INTEGER">
+<ParamField query="page" type="INTEGER" >
   Page number
 </ParamField>
 
-<ParamField query="status" type="STRING">
+<ParamField query="status" type="STRING" >
   Filter: draft, scheduled, sending, completed, failed, paused, cancelled
 </ParamField>
 
-<ParamField query="search" type="STRING">
+<ParamField query="search" type="STRING" >
   Search in name or subject
 </ParamField>
 
-<ParamField query="template_id" type="UUID">
+<ParamField query="template_id" type="UUID" >
   Filter by template
 </ParamField>
 
-<ParamField query="created_by" type="UUID">
+<ParamField query="created_by" type="UUID" >
   Filter by creator user ID
 </ParamField>
 
-<ParamField query="date_from" type="DATE">
+<ParamField query="date_from" type="DATE" >
   Filter by start date (ISO)
 </ParamField>
 
-<ParamField query="date_to" type="DATE">
+<ParamField query="date_to" type="DATE" >
   Filter by end date (ISO)
 </ParamField>
 
