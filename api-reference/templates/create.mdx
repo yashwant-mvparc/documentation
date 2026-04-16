@@ -1,4 +1,48 @@
 ---
 title: 'Push Template'
-openapi: 'POST /templates'
+api: 'POST /templates'
+description: 'Stage a raw HTML layout for campaign injection.'
 ---
+
+### Body
+
+<ParamField body="name" type="STRING" required>
+  Internal template display name
+</ParamField>
+
+<ParamField body="content" type="STRING" required>
+  Full HTML body
+</ParamField>
+
+<ParamField body="subject" type="STRING" >
+  Default subject line for this template
+</ParamField>
+
+<ParamField body="preview_text" type="STRING" >
+  Inbox snippet text
+</ParamField>
+
+
+<RequestExample>
+
+```json Request
+{
+  "name": "Monthly Newsletter",
+  "content": "<html><body>Hello {{name}}</body></html>"
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "id": "99de-88bc-11bc"
+  }
+}
+```
+
+</ResponseExample>

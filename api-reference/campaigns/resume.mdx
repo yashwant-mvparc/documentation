@@ -1,4 +1,19 @@
 ---
 title: 'Resume Delivery'
-openapi: 'POST /campaigns/{id}/resume'
+api: 'POST /campaigns/:id/resume'
+description: 'Restart a paused campaign.'
 ---
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "status": "sending",
+    "message": "Campaign resumed successfully"
+  }
+}
+```
+
+</ResponseExample>

@@ -1,4 +1,40 @@
 ---
 title: 'Library Index'
-openapi: 'GET /templates'
+api: 'GET /templates'
+description: 'Retrieve all synced HTML designs.'
 ---
+
+### Query Parameters
+
+<ParamField query="page" type="INTEGER"  default="1">
+  Page number
+</ParamField>
+
+<ParamField query="search" type="STRING"  >
+  Search in name or content
+</ParamField>
+
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "templates": [
+      {
+        "id": "441b-99ef",
+        "name": "Midnight Minimal"
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "limit": 10,
+      "total": 1,
+      "pages": 1
+    }
+  }
+}
+```
+
+</ResponseExample>

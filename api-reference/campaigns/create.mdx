@@ -1,4 +1,75 @@
 ---
 title: 'Create Campaign'
-openapi: 'POST /campaigns'
+api: 'POST /campaigns'
+description: 'Generate a new campaign draft.'
 ---
+
+### Body
+
+<ParamField body="name" type="STRING" required>
+  Campaign internal name
+</ParamField>
+
+<ParamField body="subject" type="STRING" required>
+  Email subject line
+</ParamField>
+
+<ParamField body="sender_email_id" type="UUID" required>
+  Fetch from /sender-emails
+</ParamField>
+
+<ParamField body="template_id" type="UUID" required>
+  Fetch from /templates
+</ParamField>
+
+<ParamField body="preview_text" type="STRING" >
+  Preview/Snippet text in inbox
+</ParamField>
+
+<ParamField body="recipient_list_ids" type="ARRAY<UUID>" >
+  Lists to target
+</ParamField>
+
+<ParamField body="recipients" type="ARRAY<OBJECT>" >
+  Inline recipients [{email, name}]
+</ParamField>
+
+<ParamField body="scheduled_date" type="DATETIME" >
+  ISO format for scheduling
+</ParamField>
+
+<ParamField body="status" type="STRING" >
+  Initial status (usually 'draft')
+</ParamField>
+
+<ParamField body="settings" type="OBJECT" >
+  {track_opens: bool, track_clicks: bool, unsubscribe_link: bool}
+</ParamField>
+
+
+<RequestExample>
+
+```json Request
+{
+  "name": "Summer Sale 2024",
+  "subject": "Exclusive 50% Off for you, {{name}}!",
+  "sender_email_id": "b7e1-9283-acde-4912-8839",
+  "template_id": "441b-99ef-8872-acde-11b2",
+  "preview_text": "Don't miss our hottest sale of the year!"
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "id": "7722-11bc"
+  }
+}
+```
+
+</ResponseExample>

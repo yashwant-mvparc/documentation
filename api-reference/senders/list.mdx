@@ -1,4 +1,54 @@
 ---
 title: 'List Identities'
-openapi: 'GET /sender-emails'
+api: 'GET /sender-emails'
+description: 'Fetch all provisioned mailboxes, their delivery health, and verification states.'
 ---
+
+### Query Parameters
+
+<ParamField query="page" type="INTEGER"  default="1">
+  Page number for pagination
+</ParamField>
+
+<ParamField query="provider" type="STRING"  >
+  Filter by provider (aws_ses, gmail_smtp, etc.)
+</ParamField>
+
+<ParamField query="is_verified" type="BOOLEAN"  >
+  Filter by verification status
+</ParamField>
+
+<ParamField query="is_active" type="BOOLEAN"  >
+  Filter by active status
+</ParamField>
+
+<ParamField query="search" type="STRING"  >
+  Search in name or email
+</ParamField>
+
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "sender_emails": [
+      {
+        "id": "b7e1-acde",
+        "email": "updates@platform.io",
+        "verified": true,
+        "provider": "aws_ses"
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "limit": 10,
+      "total": 1,
+      "pages": 1
+    }
+  }
+}
+```
+
+</ResponseExample>

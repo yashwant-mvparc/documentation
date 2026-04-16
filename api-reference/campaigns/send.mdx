@@ -1,4 +1,34 @@
 ---
 title: 'Send Campaign'
-openapi: 'POST /campaigns/{id}/send'
+api: 'POST /campaigns/:id/send'
+description: 'Push an active draft into the delivery stream.'
 ---
+
+### Body
+
+<ParamField body="send_immediately" type="BOOLEAN" >
+  Whether to start now
+</ParamField>
+
+<ParamField body="email_provider" type="STRING" >
+  Provider override (gmail, ses, smtp)
+</ParamField>
+
+<ParamField body="sender_email_id" type="UUID" >
+  Override sender ID
+</ParamField>
+
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "queue_position": 1,
+    "eta": "0.2s"
+  }
+}
+```
+
+</ResponseExample>

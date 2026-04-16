@@ -1,4 +1,21 @@
 ---
 title: 'Get List Detail'
-openapi: 'GET /lists/{id}'
+api: 'GET /lists/:id'
+description: 'Retrieve detailed configuration and statistics for a specific segment.'
 ---
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "id": "a0ee-9c0b",
+    "list_name": "Premium Users",
+    "description": "Users who upgraded in Q1",
+    "recipient_count": 450
+  }
+}
+```
+
+</ResponseExample>

@@ -1,4 +1,49 @@
 ---
 title: 'Message Audit Logs'
-openapi: 'GET /emails'
+api: 'GET /emails'
+description: 'Access a detailed audit trail of all developer-triggered messages and their current delivery status.'
 ---
+
+### Query Parameters
+
+<ParamField query="page" type="INTEGER"  default="1">
+  Page number
+</ParamField>
+
+<ParamField query="status" type="STRING"  >
+  Filter: sent, failed, bounced, complaint, opened, clicked
+</ParamField>
+
+<ParamField query="search" type="STRING"  >
+  Search by email, name, or subject
+</ParamField>
+
+<ParamField query="track_id" type="STRING"  >
+  Search by unique tracking ID
+</ParamField>
+
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": [
+    {
+      "id": "msg_1",
+      "email": "user@test.com",
+      "status": "delivered",
+      "sent_at": "2024-03-18T10:00:00Z",
+      "opened_at": null
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 20,
+    "total": 100,
+    "pages": 5
+  }
+}
+```
+
+</ResponseExample>

@@ -1,4 +1,80 @@
 ---
 title: 'Provision New Sender'
-openapi: 'POST /sender-emails'
+api: 'POST /sender-emails'
+description: 'Initiate DNS/Email verification for a new identity.'
 ---
+
+### Body
+
+<ParamField body="name" type="STRING" required>
+  Internal label for the sender
+</ParamField>
+
+<ParamField body="email" type="STRING" required>
+  The 'from' email address
+</ParamField>
+
+<ParamField body="provider" type="STRING" required>
+  Provider type (aws_ses, gmail_smtp, wildduck, email_infrastructure, smtp)
+</ParamField>
+
+<ParamField body="from_name" type="STRING" >
+  Display name in recipients' inbox
+</ParamField>
+
+<ParamField body="reply_to_email" type="STRING" >
+  Address for replies
+</ParamField>
+
+<ParamField body="verified_domain_id" type="UUID" >
+  Required for 'email_infrastructure' and shared SES
+</ParamField>
+
+<ParamField body="smtp_host" type="STRING" >
+  SMTP host if provider is 'smtp'
+</ParamField>
+
+<ParamField body="smtp_port" type="INTEGER" >
+  SMTP port
+</ParamField>
+
+<ParamField body="smtp_username" type="STRING" >
+  SMTP username
+</ParamField>
+
+<ParamField body="smtp_password" type="STRING" >
+  SMTP password
+</ParamField>
+
+<ParamField body="gmail_app_password" type="STRING" >
+  Gmail app password if using gmail_smtp
+</ParamField>
+
+
+<RequestExample>
+
+```json Request
+{
+  "name": "Global Support Desk",
+  "email": "support@yourdomain.com",
+  "provider": "aws_ses",
+  "from_name": "Syntr Support",
+  "reply_to_email": "tickets@yourdomain.com"
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "id": "b7e1-acde",
+    "tracking_id": "verify_seq_8872"
+  }
+}
+```
+
+</ResponseExample>

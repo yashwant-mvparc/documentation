@@ -1,4 +1,58 @@
 ---
 title: 'Upsert Contact'
-openapi: 'POST /subscribers'
+api: 'POST /subscribers'
+description: 'Create or update profile with custom metadata and list associations.'
 ---
+
+### Body
+
+<ParamField body="email" type="STRING" required>
+  Primary key (email)
+</ParamField>
+
+<ParamField body="name" type="STRING" >
+  Full name
+</ParamField>
+
+<ParamField body="list_id" type="UUID" >
+  Optional: Target list ID to associate the contact with.
+</ParamField>
+
+<ParamField body="tags" type="ARRAY<STRING>" >
+  Optional: List of tags to apply.
+</ParamField>
+
+<ParamField body="additional_info" type="OBJECT" >
+  Key-value pair metadata (Merge Tags)
+</ParamField>
+
+
+<RequestExample>
+
+```json Request
+{
+  "email": "sarah@domain.com",
+  "name": "Sarah W",
+  "list_id": "list-1234",
+  "additional_info": {
+    "industry": "SaaS"
+  }
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "id": "88de-12bc",
+    "email": "sarah@domain.com"
+  },
+  "message": "Subscriber created and synchronized successfully."
+}
+```
+
+</ResponseExample>

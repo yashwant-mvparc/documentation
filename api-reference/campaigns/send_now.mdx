@@ -1,5 +1,74 @@
 ---
 title: 'Send Now (One-shot)'
-openapi: 'POST /campaigns/send-now'
+api: 'POST /campaigns/send-now'
+description: 'Create and start a campaign in one go.'
 ---
-    
+
+### Body
+
+<ParamField body="subject" type="STRING" required>
+  Email subject
+</ParamField>
+
+<ParamField body="sender_id" type="UUID" required>
+  Verified sender ID
+</ParamField>
+
+<ParamField body="name" type="STRING" >
+  Optional name
+</ParamField>
+
+<ParamField body="body" type="STRING" >
+  Raw HTML content (creates dynamic template)
+</ParamField>
+
+<ParamField body="template_id" type="UUID" >
+  Template ID
+</ParamField>
+
+<ParamField body="recipient_list_ids" type="ARRAY<UUID>" >
+  List IDs to target
+</ParamField>
+
+<ParamField body="recipients" type="ARRAY<OBJECT>" >
+  List of {email, name}
+</ParamField>
+
+<ParamField body="preview_text" type="STRING" >
+  Inbox snippet
+</ParamField>
+
+
+<RequestExample>
+
+```json Request
+{
+  "name": "Immediate Alert",
+  "subject": "Critical Update",
+  "sender_id": "b7e1-acde-4912-8839",
+  "body": "<h1>Scheduled Maintenance</h1>",
+  "recipients": [
+    {
+      "email": "alert@domain.com",
+      "name": "Ops"
+    }
+  ]
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "campaign_id": "7722-11bc",
+    "status": "sending",
+    "message": "Campaign created and started successfully."
+  }
+}
+```
+
+</ResponseExample>

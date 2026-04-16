@@ -1,4 +1,41 @@
 ---
 title: 'Audience Lists'
-openapi: 'GET /lists'
+api: 'GET /lists'
+description: 'Fetch all segment categories and their aggregate metrics.'
 ---
+
+### Query Parameters
+
+<ParamField query="page" type="INTEGER"  default="1">
+  Page number
+</ParamField>
+
+<ParamField query="search" type="STRING"  >
+  Search list name
+</ParamField>
+
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "lists": [
+      {
+        "id": "a0ee-9c0b",
+        "name": "Leads",
+        "count": 8820
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "limit": 10,
+      "total": 1,
+      "pages": 1
+    }
+  }
+}
+```
+
+</ResponseExample>

@@ -1,4 +1,62 @@
 ---
 title: 'List Campaigns'
-openapi: 'GET /campaigns'
+api: 'GET /campaigns'
+description: 'Global history of all broadcasts.'
 ---
+
+### Query Parameters
+
+<ParamField query="page" type="INTEGER"  default="1">
+  Page number
+</ParamField>
+
+<ParamField query="status" type="STRING"  >
+  Filter: draft, scheduled, sending, completed, failed, paused, cancelled
+</ParamField>
+
+<ParamField query="search" type="STRING"  >
+  Search in name or subject
+</ParamField>
+
+<ParamField query="template_id" type="UUID"  >
+  Filter by template
+</ParamField>
+
+<ParamField query="created_by" type="UUID"  >
+  Filter by creator user ID
+</ParamField>
+
+<ParamField query="date_from" type="DATE"  >
+  Filter by start date (ISO)
+</ParamField>
+
+<ParamField query="date_to" type="DATE"  >
+  Filter by end date (ISO)
+</ParamField>
+
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "campaigns": [
+      {
+        "id": "ea22-9913",
+        "name": "Black Friday Push",
+        "status": "delivered",
+        "total_recipients": 45000
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "limit": 10,
+      "total": 1,
+      "pages": 1
+    }
+  }
+}
+```
+
+</ResponseExample>

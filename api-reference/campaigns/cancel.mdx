@@ -1,4 +1,19 @@
 ---
 title: 'Terminate Broadcast'
-openapi: 'POST /campaigns/{id}/cancel'
+api: 'POST /campaigns/:id/cancel'
+description: 'Abort a scheduled or sending campaign permanently.'
 ---
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "status": "cancelled",
+    "message": "Campaign cancelled successfully"
+  }
+}
+```
+
+</ResponseExample>

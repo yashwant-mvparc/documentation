@@ -1,4 +1,19 @@
 ---
 title: 'Pause Delivery'
-openapi: 'POST /campaigns/{id}/pause'
+api: 'POST /campaigns/:id/pause'
+description: 'Halt an active or scheduled broadcast temporarily.'
 ---
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "status": "paused",
+    "message": "Campaign paused successfully"
+  }
+}
+```
+
+</ResponseExample>

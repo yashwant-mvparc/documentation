@@ -1,4 +1,35 @@
 ---
 title: 'Message Detail'
-openapi: 'GET /inbox/message/{messageId}'
+api: 'GET /inbox/message/:messageId'
+description: 'Retrieve full headers and body of a specific inbound message.'
 ---
+
+### Query Parameters
+
+<ParamField query="senderId" type="UUID" required >
+  REQUIRED. The ID of the sender identity.
+</ParamField>
+
+<ParamField query="mailboxId" type="STRING"  >
+  Optional mailbox ID for WildDuck identities.
+</ParamField>
+
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "id": "msg_123",
+    "subject": "Re: Your Pitch",
+    "body": "I would love to learn more...",
+    "from": {
+      "name": "John Doe",
+      "email": "john@doe.com"
+    }
+  }
+}
+```
+
+</ResponseExample>

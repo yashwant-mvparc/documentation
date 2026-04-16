@@ -1,4 +1,20 @@
 ---
 title: 'Terminate Identity'
-openapi: 'DELETE /sender-emails/{id}'
+api: 'DELETE /sender-emails/:id'
+description: 'Permanently offboard a sending identity.'
 ---
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "message": "Sender email deleted successfully"
+  },
+  "message": "Sender email deleted successfully"
+}
+```
+
+</ResponseExample>

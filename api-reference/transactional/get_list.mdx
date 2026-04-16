@@ -1,4 +1,19 @@
 ---
 title: 'Fetch List Profile'
-openapi: 'GET /emails/lists/{id}'
+api: 'GET /emails/lists/:id'
+description: 'Retrieve segment metadata to ensure list_id validity before batch messaging.'
 ---
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "id": "list-1234",
+    "name": "Marketing Leads"
+  }
+}
+```
+
+</ResponseExample>

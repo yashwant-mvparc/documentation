@@ -1,4 +1,16 @@
 ---
 title: 'Export Report'
-openapi: 'GET /campaigns/{id}/export'
+api: 'GET /campaigns/:id/export'
+description: 'Download full campaign report in multiple formats.'
 ---
+
+### Query Parameters
+
+<ParamField query="format" type="STRING"  default="csv">
+  csv, xlsx, pdf
+</ParamField>
+
+<ParamField query="type" type="STRING"  default="full">
+  recipients, analytics, full
+</ParamField>
+

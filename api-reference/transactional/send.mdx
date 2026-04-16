@@ -1,4 +1,71 @@
 ---
 title: 'Send Transactional Email'
-openapi: 'POST /emails'
+api: 'POST /emails'
+description: 'Trigger a personalized email to a specific recipient. If the recipient does not exist in your CRM, they will be automatically created using the provided email and name.'
 ---
+
+### Body
+
+<ParamField body="to" type="STRING" >
+  Target email address. Mandatory if recipient_id is not provided.
+</ParamField>
+
+<ParamField body="recipient_id" type="UUID" >
+  Target existing CRM contact ID. If provided, 'to' can be omitted.
+</ParamField>
+
+<ParamField body="template_id" type="UUID" >
+  Design asset ID. Required unless raw HTML/Subject are provided.
+</ParamField>
+
+<ParamField body="subject" type="STRING" >
+  Override or provide custom subject line.
+</ParamField>
+
+<ParamField body="html" type="STRING" >
+  Direct HTML injection (bypasses template).
+</ParamField>
+
+<ParamField body="name" type="STRING" >
+  Recipient display name for CRM sync.
+</ParamField>
+
+<ParamField body="sender_id" type="UUID" >
+  Specific verified sender ID. If omitted, organization default is used.
+</ParamField>
+
+<ParamField body="params" type="OBJECT" >
+  Merge tag values for dynamic personalization.
+</ParamField>
+
+
+<RequestExample>
+
+```json Request
+{
+  "to": "alex.dev@google.com",
+  "template_id": "8c7d-bcde-1122",
+  "params": {
+    "login_time": "14:20 UTC",
+    "location": "Mumbai, IN"
+  }
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "id": "log_9912",
+    "status": "sent",
+    "messageId": "<id-123@aws.com>"
+  },
+  "message": "Message dispatched."
+}
+```
+
+</ResponseExample>

@@ -1,4 +1,24 @@
 ---
 title: 'Get Sender Details'
-openapi: 'GET /sender-emails/{id}'
+api: 'GET /sender-emails/:id'
+description: 'Fetch full detailed state of a sending identity.'
 ---
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "id": "b7e1",
+    "email": "support@domain.com",
+    "is_verified": true,
+    "stats": {
+      "sent": 5000,
+      "bounces": 12
+    }
+  }
+}
+```
+
+</ResponseExample>
