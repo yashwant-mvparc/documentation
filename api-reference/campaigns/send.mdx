@@ -1,10 +1,11 @@
 ---
 title: 'Send Campaign'
-openapi: 'POST /campaigns/{id}/send'
 description: 'Push an active draft into the delivery stream.'
 ---
 
-### Request Body
+### POST /campaigns/:id/send
+
+#### Request Body
 
 <ParamField body="send_immediately" type="BOOLEAN" >
   Whether to start now

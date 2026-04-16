@@ -1,10 +1,11 @@
 ---
 title: 'Bulk Operations'
-openapi: 'POST /subscribers/bulk-operation'
 description: 'Perform batch actions (add, remove, move, delete) on subscribers.'
 ---
 
-### Request Body
+### POST /subscribers/bulk-operation
+
+#### Request Body
 
 <ParamField body="operation" type="STRING" required>
   add, remove, move, delete

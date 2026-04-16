@@ -1,10 +1,11 @@
 ---
 title: 'Bulk Import'
-openapi: 'POST /subscribers/import'
 description: 'Ingest batch of contacts via background worker.'
 ---
 
-### Request Body
+### POST /subscribers/import
+
+#### Request Body
 
 <ParamField body="contacts" type="ARRAY<OBJECT>" required>
   List of {email, name, list_name, tags}

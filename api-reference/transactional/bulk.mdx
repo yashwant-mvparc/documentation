@@ -1,10 +1,11 @@
 ---
 title: 'Batch Transactional distribution'
-openapi: 'POST /emails/bulk'
 description: 'Execute a batch of transactional messages. You may provide a specific 'emails' array for unique payloads per user, or a 'list_id' to target an entire segment with 'common_params'.'
 ---
 
-### Request Body
+### POST /emails/bulk
+
+#### Request Body
 
 <ParamField body="emails" type="ARRAY<OBJECT>" >
   List of individual messages: [{to, recipient_id, params, name}]

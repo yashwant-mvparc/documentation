@@ -1,10 +1,11 @@
 ---
 title: 'Send Transactional Email'
-openapi: 'POST /emails'
 description: 'Trigger a personalized email to a specific recipient. If the recipient does not exist in your CRM, they will be automatically created using the provided email and name.'
 ---
 
-### Request Body
+### POST /emails
+
+#### Request Body
 
 <ParamField body="to" type="STRING" >
   Target email address. Mandatory if recipient_id is not provided.

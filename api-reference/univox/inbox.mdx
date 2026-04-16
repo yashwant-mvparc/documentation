@@ -1,10 +1,11 @@
 ---
 title: 'Message Inbox'
-openapi: 'GET /inbox'
 description: 'Fetch messages for a specific sending identity.'
 ---
 
-### URL Parameters
+### GET /inbox
+
+#### URL Parameters
 
 <ParamField query="senderId" type="UUID" required>
   REQUIRED. The ID of the sender identity.

@@ -1,10 +1,11 @@
 ---
 title: 'Schedule Delivery'
-openapi: 'POST /campaigns/{id}/schedule'
 description: 'Set a future date for broadcast.'
 ---
 
-### Request Body
+### POST /campaigns/:id/schedule
+
+#### Request Body
 
 <ParamField body="scheduled_date" type="DATETIME" required>
   ISO8601 timestamp
