@@ -3,9 +3,12 @@
   "theme": "mint",
   "name": "Syntr API",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#2563EB",
+    "light": "#3B82F6",
+    "dark": "#1D4ED8"
+  },
+  "api": {
+    "baseUrl": "https://api.syntr.io/api/v1/email-marketing"
   },
   "favicon": "/favicon.ico",
   "navigation": {
