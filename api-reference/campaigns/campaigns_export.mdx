@@ -1,17 +1,35 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Export Report'
 description: 'Download full campaign report in multiple formats.'
-api: 'GET /campaigns/:id/export'
+api: 'GET /campaigns/{id}/export'
 ---
 
+<ParamField path="id" type="string" required>
+  The ID of the id.
+</ParamField>
 
-#### URL Parameters
+### Query Parameters
 
-<ParamField query="format" type="STRING" >
+<ParamField query="format" type="string">
   csv, xlsx, pdf
 </ParamField>
 
-<ParamField query="type" type="STRING" >
+<ParamField query="type" type="string">
   recipients, analytics, full
 </ParamField>
 
+<ResponseExample>
+
+```json Response
+{
+  "format": "csv/pdf/xlsx",
+  "desc": "Binary file or text stream"
+}
+```
+
+</ResponseExample>

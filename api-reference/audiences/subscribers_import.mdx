@@ -1,20 +1,23 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Bulk Import'
 description: 'Ingest batch of contacts via background worker.'
 api: 'POST /subscribers/import'
 ---
 
+### Request Body
 
-#### Request Body
-
-<ParamField body="contacts" type="ARRAY<OBJECT>" required>
+<ParamField body="contacts" type="array" required>
   List of {email, name, list_name, tags}
 </ParamField>
 
-<ParamField body="recipient_list_ids" type="ARRAY<UUID>" >
+<ParamField body="recipient_list_ids" type="array">
   Lists to add to
 </ParamField>
-
 
 <RequestExample>
 

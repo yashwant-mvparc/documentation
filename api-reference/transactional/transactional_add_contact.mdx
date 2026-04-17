@@ -1,28 +1,31 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Quick-Add Contact'
 description: 'Directly inject a contact into a specific list from your messaging infrastructure.'
 api: 'POST /emails/contacts'
 ---
 
+### Request Body
 
-#### Request Body
-
-<ParamField body="email" type="STRING" required>
+<ParamField body="email" type="string" required>
   Recipient email address.
 </ParamField>
 
-<ParamField body="name" type="STRING" >
+<ParamField body="name" type="string">
   Recipient full name.
 </ParamField>
 
-<ParamField body="params" type="OBJECT" >
+<ParamField body="params" type="object">
   Custom fields / personalization metadata.
 </ParamField>
 
-<ParamField body="list_id" type="UUID" required>
+<ParamField body="list_id" type="string" required>
   The segment ID to bind this contact to.
 </ParamField>
-
 
 <RequestExample>
 

@@ -1,24 +1,31 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Send Campaign'
 description: 'Push an active draft into the delivery stream.'
-api: 'POST /campaigns/:id/send'
+api: 'POST /campaigns/{id}/send'
 ---
 
+<ParamField path="id" type="string" required>
+  The ID of the id.
+</ParamField>
 
-#### Request Body
+### Request Body
 
-<ParamField body="send_immediately" type="BOOLEAN" >
+<ParamField body="send_immediately" type="boolean">
   Whether to start now
 </ParamField>
 
-<ParamField body="email_provider" type="STRING" >
+<ParamField body="email_provider" type="string">
   Provider override (gmail, ses, smtp)
 </ParamField>
 
-<ParamField body="sender_email_id" type="UUID" >
+<ParamField body="sender_email_id" type="string">
   Override sender ID
 </ParamField>
-
 
 <ResponseExample>
 

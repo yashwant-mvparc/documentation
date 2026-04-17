@@ -1,24 +1,31 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'List Members'
 description: 'Fetch all contacts belonging to a specific segment with pagination.'
-api: 'GET /lists/:id/recipients'
+api: 'GET /lists/{id}/recipients'
 ---
 
+<ParamField path="id" type="string" required>
+  The ID of the id.
+</ParamField>
 
-#### URL Parameters
+### Query Parameters
 
-<ParamField query="page" type="INTEGER" >
+<ParamField query="page" type="integer">
   Page number
 </ParamField>
 
-<ParamField query="limit" type="INTEGER" >
+<ParamField query="limit" type="integer">
   Number of records per page
 </ParamField>
 
-<ParamField query="search" type="STRING" >
+<ParamField query="search" type="string">
   Search by email or name within the list
 </ParamField>
-
 
 <ResponseExample>
 

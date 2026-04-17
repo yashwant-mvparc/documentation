@@ -1,40 +1,43 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'List Campaigns'
 description: 'Global history of all broadcasts.'
 api: 'GET /campaigns'
 ---
 
+### Query Parameters
 
-#### URL Parameters
-
-<ParamField query="page" type="INTEGER" >
+<ParamField query="page" type="integer">
   Page number
 </ParamField>
 
-<ParamField query="status" type="STRING" >
+<ParamField query="status" type="string">
   Filter: draft, scheduled, sending, completed, failed, paused, cancelled
 </ParamField>
 
-<ParamField query="search" type="STRING" >
+<ParamField query="search" type="string">
   Search in name or subject
 </ParamField>
 
-<ParamField query="template_id" type="UUID" >
+<ParamField query="template_id" type="string">
   Filter by template
 </ParamField>
 
-<ParamField query="created_by" type="UUID" >
+<ParamField query="created_by" type="string">
   Filter by creator user ID
 </ParamField>
 
-<ParamField query="date_from" type="DATE" >
+<ParamField query="date_from" type="string">
   Filter by start date (ISO)
 </ParamField>
 
-<ParamField query="date_to" type="DATE" >
+<ParamField query="date_to" type="string">
   Filter by end date (ISO)
 </ParamField>
-
 
 <ResponseExample>
 

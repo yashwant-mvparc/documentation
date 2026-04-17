@@ -1,24 +1,27 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Message Inbox'
 description: 'Fetch messages for a specific sending identity.'
 api: 'GET /inbox'
 ---
 
+### Query Parameters
 
-#### URL Parameters
-
-<ParamField query="senderId" type="UUID" required>
+<ParamField query="senderId" type="string" required>
   REQUIRED. The ID of the sender identity.
 </ParamField>
 
-<ParamField query="pageToken" type="STRING" >
+<ParamField query="pageToken" type="string">
   Token for the next page of results.
 </ParamField>
 
-<ParamField query="label" type="STRING" >
+<ParamField query="label" type="string">
   Filter by label (e.g. INBOX, SENT). Default: inbox
 </ParamField>
-
 
 <ResponseExample>
 

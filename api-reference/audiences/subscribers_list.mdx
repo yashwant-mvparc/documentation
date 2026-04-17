@@ -1,28 +1,31 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'List Contacts'
 description: 'Fetch all profiles with their segmentation and health status. Supports filtering by specific list segments.'
 api: 'GET /subscribers'
 ---
 
+### Query Parameters
 
-#### URL Parameters
-
-<ParamField query="page" type="INTEGER" >
+<ParamField query="page" type="integer">
   Page number
 </ParamField>
 
-<ParamField query="limit" type="INTEGER" >
+<ParamField query="limit" type="integer">
   Number of records per page
 </ParamField>
 
-<ParamField query="search" type="STRING" >
+<ParamField query="search" type="string">
   Filter by name or email
 </ParamField>
 
-<ParamField query="recipient_list_id" type="UUID" >
+<ParamField query="recipient_list_id" type="string">
   Filter contacts belonging to a specific segment.
 </ParamField>
-
 
 <ResponseExample>
 

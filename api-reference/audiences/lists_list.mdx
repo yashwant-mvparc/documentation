@@ -1,20 +1,23 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Audience Lists'
 description: 'Fetch all segment categories and their aggregate metrics.'
 api: 'GET /lists'
 ---
 
+### Query Parameters
 
-#### URL Parameters
-
-<ParamField query="page" type="INTEGER" >
+<ParamField query="page" type="integer">
   Page number
 </ParamField>
 
-<ParamField query="search" type="STRING" >
+<ParamField query="search" type="string">
   Search list name
 </ParamField>
-
 
 <ResponseExample>
 

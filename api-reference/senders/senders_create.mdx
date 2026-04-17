@@ -1,56 +1,59 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Provision New Sender'
 description: 'Initiate DNS/Email verification for a new identity.'
 api: 'POST /sender-emails'
 ---
 
+### Request Body
 
-#### Request Body
-
-<ParamField body="name" type="STRING" required>
+<ParamField body="name" type="string" required>
   Internal label for the sender
 </ParamField>
 
-<ParamField body="email" type="STRING" required>
+<ParamField body="email" type="string" required>
   The 'from' email address
 </ParamField>
 
-<ParamField body="provider" type="STRING" required>
+<ParamField body="provider" type="string" required>
   Provider type (aws_ses, gmail_smtp, wildduck, email_infrastructure, smtp)
 </ParamField>
 
-<ParamField body="from_name" type="STRING" >
+<ParamField body="from_name" type="string">
   Display name in recipients' inbox
 </ParamField>
 
-<ParamField body="reply_to_email" type="STRING" >
+<ParamField body="reply_to_email" type="string">
   Address for replies
 </ParamField>
 
-<ParamField body="verified_domain_id" type="UUID" >
+<ParamField body="verified_domain_id" type="string">
   Required for 'email_infrastructure' and shared SES
 </ParamField>
 
-<ParamField body="smtp_host" type="STRING" >
+<ParamField body="smtp_host" type="string">
   SMTP host if provider is 'smtp'
 </ParamField>
 
-<ParamField body="smtp_port" type="INTEGER" >
+<ParamField body="smtp_port" type="integer">
   SMTP port
 </ParamField>
 
-<ParamField body="smtp_username" type="STRING" >
+<ParamField body="smtp_username" type="string">
   SMTP username
 </ParamField>
 
-<ParamField body="smtp_password" type="STRING" >
+<ParamField body="smtp_password" type="string">
   SMTP password
 </ParamField>
 
-<ParamField body="gmail_app_password" type="STRING" >
+<ParamField body="gmail_app_password" type="string">
   Gmail app password if using gmail_smtp
 </ParamField>
-
 
 <RequestExample>
 

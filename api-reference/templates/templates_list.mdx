@@ -1,20 +1,23 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Library Index'
 description: 'Retrieve all synced HTML designs.'
 api: 'GET /templates'
 ---
 
+### Query Parameters
 
-#### URL Parameters
-
-<ParamField query="page" type="INTEGER" >
+<ParamField query="page" type="integer">
   Page number
 </ParamField>
 
-<ParamField query="search" type="STRING" >
+<ParamField query="search" type="string">
   Search in name or content
 </ParamField>
-
 
 <ResponseExample>
 

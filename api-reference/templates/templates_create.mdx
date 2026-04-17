@@ -1,28 +1,31 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Push Template'
 description: 'Stage a raw HTML layout for campaign injection.'
 api: 'POST /templates'
 ---
 
+### Request Body
 
-#### Request Body
-
-<ParamField body="name" type="STRING" required>
+<ParamField body="name" type="string" required>
   Internal template display name
 </ParamField>
 
-<ParamField body="content" type="STRING" required>
+<ParamField body="content" type="string" required>
   Full HTML body
 </ParamField>
 
-<ParamField body="subject" type="STRING" >
+<ParamField body="subject" type="string">
   Default subject line for this template
 </ParamField>
 
-<ParamField body="preview_text" type="STRING" >
+<ParamField body="preview_text" type="string">
   Inbox snippet text
 </ParamField>
-
 
 <RequestExample>
 

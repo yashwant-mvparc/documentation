@@ -1,10 +1,17 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Pause Delivery'
 description: 'Halt an active or scheduled broadcast temporarily.'
-api: 'POST /campaigns/:id/pause'
+api: 'POST /campaigns/{id}/pause'
 ---
 
-
+<ParamField path="id" type="string" required>
+  The ID of the id.
+</ParamField>
 
 <ResponseExample>
 

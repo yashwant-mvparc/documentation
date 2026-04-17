@@ -1,10 +1,17 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Get Sender Details'
 description: 'Fetch full detailed state of a sending identity.'
-api: 'GET /sender-emails/:id'
+api: 'GET /sender-emails/{id}'
 ---
 
-
+<ParamField path="id" type="string" required>
+  The ID of the id.
+</ParamField>
 
 <ResponseExample>
 

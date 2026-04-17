@@ -1,10 +1,17 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Performance Data'
 description: 'High-level metrics (sent, opened, clicked, bounced).'
-api: 'GET /campaigns/:id/performance'
+api: 'GET /campaigns/{id}/performance'
 ---
 
-
+<ParamField path="id" type="string" required>
+  The ID of the id.
+</ParamField>
 
 <ResponseExample>
 

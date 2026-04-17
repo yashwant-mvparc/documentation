@@ -1,7 +1,25 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Export CSV'
 description: 'Download raw segment data for offline analysis.'
-api: 'GET /lists/:id/export'
+api: 'GET /lists/{id}/export'
 ---
 
+<ParamField path="id" type="string" required>
+  The ID of the id.
+</ParamField>
 
+<ResponseExample>
+
+```json Response
+{
+  "format": "csv",
+  "example": "Email,Name\njohn@example.com,John"
+}
+```
+
+</ResponseExample>

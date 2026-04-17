@@ -1,32 +1,35 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'List Identities'
 description: 'Fetch all provisioned mailboxes, their delivery health, and verification states.'
 api: 'GET /sender-emails'
 ---
 
+### Query Parameters
 
-#### URL Parameters
-
-<ParamField query="page" type="INTEGER" >
+<ParamField query="page" type="integer">
   Page number for pagination
 </ParamField>
 
-<ParamField query="provider" type="STRING" >
+<ParamField query="provider" type="string">
   Filter by provider (aws_ses, gmail_smtp, etc.)
 </ParamField>
 
-<ParamField query="is_verified" type="BOOLEAN" >
+<ParamField query="is_verified" type="boolean">
   Filter by verification status
 </ParamField>
 
-<ParamField query="is_active" type="BOOLEAN" >
+<ParamField query="is_active" type="boolean">
   Filter by active status
 </ParamField>
 
-<ParamField query="search" type="STRING" >
+<ParamField query="search" type="string">
   Search in name or email
 </ParamField>
-
 
 <ResponseExample>
 

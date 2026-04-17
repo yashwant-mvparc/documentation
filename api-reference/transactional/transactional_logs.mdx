@@ -1,28 +1,31 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Message Audit Logs'
 description: 'Access a detailed audit trail of all developer-triggered messages and their current delivery status.'
 api: 'GET /emails'
 ---
 
+### Query Parameters
 
-#### URL Parameters
-
-<ParamField query="page" type="INTEGER" >
+<ParamField query="page" type="integer">
   Page number
 </ParamField>
 
-<ParamField query="status" type="STRING" >
+<ParamField query="status" type="string">
   Filter: sent, failed, bounced, complaint, opened, clicked
 </ParamField>
 
-<ParamField query="search" type="STRING" >
+<ParamField query="search" type="string">
   Search by email, name, or subject
 </ParamField>
 
-<ParamField query="track_id" type="STRING" >
+<ParamField query="track_id" type="string">
   Search by unique tracking ID
 </ParamField>
-
 
 <ResponseExample>
 

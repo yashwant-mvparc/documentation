@@ -1,10 +1,13 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Mark not spam'
 description: 'Move message from Spam/Junk to Inbox. JSON body: senderId (UUID), messageId; mailboxId required for WildDuck and Stalwart (same as list row).'
 api: 'POST /inbox/messages/not-spam'
 ---
-
-
 
 <RequestExample>
 

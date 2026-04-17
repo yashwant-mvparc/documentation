@@ -1,10 +1,17 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Terminate Broadcast'
 description: 'Abort a scheduled or sending campaign permanently.'
-api: 'POST /campaigns/:id/cancel'
+api: 'POST /campaigns/{id}/cancel'
 ---
 
-
+<ParamField path="id" type="string" required>
+  The ID of the id.
+</ParamField>
 
 <ResponseExample>
 

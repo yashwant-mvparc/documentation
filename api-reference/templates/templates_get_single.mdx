@@ -1,10 +1,17 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Fetch Single Template'
 description: 'Retrieve full details for a specific design asset, including its HTML content, default subject line, and latest modification timestamp.'
-api: 'GET /templates/:id'
+api: 'GET /templates/{id}'
 ---
 
-
+<ParamField path="id" type="string" required>
+  The ID of the id.
+</ParamField>
 
 <ResponseExample>
 

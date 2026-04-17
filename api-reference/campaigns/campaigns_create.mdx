@@ -1,48 +1,53 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Create Campaign'
 description: 'Generate a new campaign draft.'
+api: 'POST /campaigns'
 ---
 
+### Request Body
 
-#### Request Body
-
-<ParamField body="name" type="STRING" required>
+<ParamField body="name" type="string" required>
   Campaign internal name
 </ParamField>
 
-<ParamField body="subject" type="STRING" required>
+<ParamField body="subject" type="string" required>
   Email subject line
 </ParamField>
 
-<ParamField body="sender_email_id" type="UUID" required>
+<ParamField body="sender_email_id" type="string" required>
   Fetch from /sender-emails
 </ParamField>
 
-<ParamField body="template_id" type="UUID" required>
+<ParamField body="template_id" type="string" required>
   Fetch from /templates
 </ParamField>
 
-<ParamField body="preview_text" type="STRING" >
+<ParamField body="preview_text" type="string">
   Preview/Snippet text in inbox
 </ParamField>
 
-<ParamField body="recipient_list_ids" type="ARRAY<UUID>" >
+<ParamField body="recipient_list_ids" type="array">
   Lists to target
 </ParamField>
 
-<ParamField body="recipients" type="ARRAY<OBJECT>" >
-  Inline recipients [{email, name}]
+<ParamField body="recipients" type="array">
+  Inline recipients `[{email, name}]`
 </ParamField>
 
-<ParamField body="scheduled_date" type="DATETIME" >
+<ParamField body="scheduled_date" type="string">
   ISO format for scheduling
 </ParamField>
 
-<ParamField body="status" type="STRING" >
+<ParamField body="status" type="string">
   Initial status (usually 'draft')
 </ParamField>
 
-<ParamField body="settings" type="OBJECT" >
+<ParamField body="settings" type="object">
   `{track_opens: bool, track_clicks: bool, unsubscribe_link: bool}`
 </ParamField>
 

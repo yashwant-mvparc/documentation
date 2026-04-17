@@ -1,20 +1,27 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Schedule Delivery'
 description: 'Set a future date for broadcast.'
-api: 'POST /campaigns/:id/schedule'
+api: 'POST /campaigns/{id}/schedule'
 ---
 
+<ParamField path="id" type="string" required>
+  The ID of the id.
+</ParamField>
 
-#### Request Body
+### Request Body
 
-<ParamField body="scheduled_date" type="DATETIME" required>
+<ParamField body="scheduled_date" type="string" required>
   ISO8601 timestamp
 </ParamField>
 
-<ParamField body="timezone" type="STRING" >
+<ParamField body="timezone" type="string">
   IANA timezone (e.g. UTC, Asia/Kolkata)
 </ParamField>
-
 
 <RequestExample>
 

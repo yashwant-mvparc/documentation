@@ -8,7 +8,13 @@
     "dark": "#1D4ED8"
   },
   "api": {
-    "baseUrl": "https://api.syntr.io/api/v1/email-marketing"
+    "mdx": {
+      "server": "https://api-prod.syntr.co/api/v1/email-marketing",
+      "auth": {
+        "method": "key",
+        "name": "X-API-Key"
+      }
+    }
   },
   "favicon": "/favicon.ico",
   "navigation": {
@@ -95,7 +101,6 @@
     "dark": "/logo/dark.png"
   },
   "footer": {
-    "socials": {
-    }
+    "socials": {}
   }
 }

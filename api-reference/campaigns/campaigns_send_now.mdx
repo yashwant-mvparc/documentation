@@ -1,44 +1,47 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Send Now (One-shot)'
 description: 'Create and start a campaign in one go.'
 api: 'POST /campaigns/send-now'
 ---
 
+### Request Body
 
-#### Request Body
-
-<ParamField body="subject" type="STRING" required>
+<ParamField body="subject" type="string" required>
   Email subject
 </ParamField>
 
-<ParamField body="sender_id" type="UUID" required>
+<ParamField body="sender_id" type="string" required>
   Verified sender ID
 </ParamField>
 
-<ParamField body="name" type="STRING" >
+<ParamField body="name" type="string">
   Optional name
 </ParamField>
 
-<ParamField body="body" type="STRING" >
+<ParamField body="body" type="string">
   Raw HTML content (creates dynamic template)
 </ParamField>
 
-<ParamField body="template_id" type="UUID" >
+<ParamField body="template_id" type="string">
   Template ID
 </ParamField>
 
-<ParamField body="recipient_list_ids" type="ARRAY<UUID>" >
+<ParamField body="recipient_list_ids" type="array">
   List IDs to target
 </ParamField>
 
-<ParamField body="recipients" type="ARRAY<OBJECT>" >
-  List of {email, name}
+<ParamField body="recipients" type="array">
+  List of `{email, name}`
 </ParamField>
 
-<ParamField body="preview_text" type="STRING" >
+<ParamField body="preview_text" type="string">
   Inbox snippet
 </ParamField>
-
 
 <RequestExample>
 

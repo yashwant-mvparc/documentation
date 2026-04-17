@@ -1,10 +1,17 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Resume Delivery'
 description: 'Restart a paused campaign.'
-api: 'POST /campaigns/:id/resume'
+api: 'POST /campaigns/{id}/resume'
 ---
 
-
+<ParamField path="id" type="string" required>
+  The ID of the id.
+</ParamField>
 
 <ResponseExample>
 

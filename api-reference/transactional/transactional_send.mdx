@@ -1,44 +1,47 @@
 ---
+
+
+<ParamField header="X-API-Key" type="string" required>
+  Your unique API key for authentication.
+</ParamField>
 title: 'Send Transactional Email'
 description: 'Trigger a personalized email to a specific recipient. If the recipient does not exist in your CRM, they will be automatically created using the provided email and name.'
 api: 'POST /emails'
 ---
 
+### Request Body
 
-#### Request Body
-
-<ParamField body="to" type="STRING" >
+<ParamField body="to" type="string">
   Target email address. Mandatory if recipient_id is not provided.
 </ParamField>
 
-<ParamField body="recipient_id" type="UUID" >
+<ParamField body="recipient_id" type="string">
   Target existing CRM contact ID. If provided, 'to' can be omitted.
 </ParamField>
 
-<ParamField body="template_id" type="UUID" >
+<ParamField body="template_id" type="string">
   Design asset ID. Required unless raw HTML/Subject are provided.
 </ParamField>
 
-<ParamField body="subject" type="STRING" >
+<ParamField body="subject" type="string">
   Override or provide custom subject line.
 </ParamField>
 
-<ParamField body="html" type="STRING" >
+<ParamField body="html" type="string">
   Direct HTML injection (bypasses template).
 </ParamField>
 
-<ParamField body="name" type="STRING" >
+<ParamField body="name" type="string">
   Recipient display name for CRM sync.
 </ParamField>
 
-<ParamField body="sender_id" type="UUID" >
+<ParamField body="sender_id" type="string">
   Specific verified sender ID. If omitted, organization default is used.
 </ParamField>
 
-<ParamField body="params" type="OBJECT" >
+<ParamField body="params" type="object">
   Merge tag values for dynamic personalization.
 </ParamField>
-
 
 <RequestExample>
 
