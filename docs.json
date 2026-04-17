@@ -8,73 +8,85 @@
     "dark": "#15803D"
   },
   "favicon": "/favicon.ico",
-  "navigation": [
-    "api-reference/introduction",
-    {
-      "group": "Senders",
-      "pages": [
-        "api-reference/senders/senders_list",
-        "api-reference/senders/senders_create",
-        "api-reference/senders/senders_get",
-        "api-reference/senders/senders_delete"
-      ]
-    },
-    {
-      "group": "Campaigns",
-      "pages": [
-        "api-reference/campaigns/campaigns_list",
-        "api-reference/campaigns/campaigns_create",
-        "api-reference/campaigns/campaigns_send_now",
-        "api-reference/campaigns/campaigns_send",
-        "api-reference/campaigns/campaigns_schedule",
-        "api-reference/campaigns/campaigns_performance",
-        "api-reference/campaigns/campaigns_export",
-        "api-reference/campaigns/campaigns_pause",
-        "api-reference/campaigns/campaigns_resume",
-        "api-reference/campaigns/campaigns_cancel"
-      ]
-    },
-    {
-      "group": "Audience & Lists",
-      "pages": [
-        "api-reference/audiences/subscribers_list",
-        "api-reference/audiences/subscribers_upsert",
-        "api-reference/audiences/subscribers_bulk",
-        "api-reference/audiences/subscribers_import",
-        "api-reference/audiences/lists_list",
-        "api-reference/audiences/lists_get_single",
-        "api-reference/audiences/lists_get_recipients",
-        "api-reference/audiences/lists_export"
-      ]
-    },
-    {
-      "group": "Templates",
-      "pages": [
-        "api-reference/templates/templates_list",
-        "api-reference/templates/templates_create",
-        "api-reference/templates/templates_get_single"
-      ]
-    },
-    {
-      "group": "Univox Inbox",
-      "pages": [
-        "api-reference/univox/univox_senders",
-        "api-reference/univox/univox_inbox",
-        "api-reference/univox/univox_message_detail",
-        "api-reference/univox/univox_not_spam"
-      ]
-    },
-    {
-      "group": "Transactional API",
-      "pages": [
-        "api-reference/transactional/transactional_send",
-        "api-reference/transactional/transactional_bulk",
-        "api-reference/transactional/transactional_logs",
-        "api-reference/transactional/transactional_add_contact",
-        "api-reference/transactional/transactional_get_list"
-      ]
-    }
-  ],
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api-reference/introduction"
+            ]
+          },
+          {
+            "group": "Senders",
+            "pages": [
+              "api-reference/senders/senders_list",
+              "api-reference/senders/senders_create",
+              "api-reference/senders/senders_get",
+              "api-reference/senders/senders_delete"
+            ]
+          },
+          {
+            "group": "Campaigns",
+            "pages": [
+              "api-reference/campaigns/campaigns_list",
+              "api-reference/campaigns/campaigns_create",
+              "api-reference/campaigns/campaigns_send_now",
+              "api-reference/campaigns/campaigns_send",
+              "api-reference/campaigns/campaigns_schedule",
+              "api-reference/campaigns/campaigns_performance",
+              "api-reference/campaigns/campaigns_export",
+              "api-reference/campaigns/campaigns_pause",
+              "api-reference/campaigns/campaigns_resume",
+              "api-reference/campaigns/campaigns_cancel"
+            ]
+          },
+          {
+            "group": "Audience & Lists",
+            "pages": [
+              "api-reference/audiences/subscribers_list",
+              "api-reference/audiences/subscribers_upsert",
+              "api-reference/audiences/subscribers_bulk",
+              "api-reference/audiences/subscribers_import",
+              "api-reference/audiences/lists_list",
+              "api-reference/audiences/lists_get_single",
+              "api-reference/audiences/lists_get_recipients",
+              "api-reference/audiences/lists_export"
+            ]
+          },
+          {
+            "group": "Templates",
+            "pages": [
+              "api-reference/templates/templates_list",
+              "api-reference/templates/templates_create",
+              "api-reference/templates/templates_get_single"
+            ]
+          },
+          {
+            "group": "Univox Inbox",
+            "pages": [
+              "api-reference/univox/univox_senders",
+              "api-reference/univox/univox_inbox",
+              "api-reference/univox/univox_message_detail",
+              "api-reference/univox/univox_not_spam"
+            ]
+          },
+          {
+            "group": "Transactional API",
+            "pages": [
+              "api-reference/transactional/transactional_send",
+              "api-reference/transactional/transactional_bulk",
+              "api-reference/transactional/transactional_logs",
+              "api-reference/transactional/transactional_add_contact",
+              "api-reference/transactional/transactional_get_list"
+            ]
+          }
+        ]
+      }
+    ]
+  },
   "logo": {
     "light": "/logo/light.png",
     "dark": "/logo/dark.png"
