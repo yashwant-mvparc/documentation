@@ -12,11 +12,21 @@ api: 'POST /subscribers/import'
 ### Request Body
 
 <ParamField body="contacts" type="array" required>
-  List of {email, name, list_name, tags}
+  List of contact objects containing:
+  - `email` (string, required)
+  - `name` (string)
+  - `list_name` (string)
+  - `phone` (string)
+  - `company` (string)
+  - `job_title` (string)
+  - `linkedin_url` (string)
+  - `tags` (array of strings)
+  - `is_subscribed` (boolean)
+  - `additional_info` (object)
 </ParamField>
 
 <ParamField body="recipient_list_ids" type="array">
-  Lists to add to
+  Optional: Array of list UUIDs to associate all contacts with.
 </ParamField>
 
 <RequestExample>
@@ -26,7 +36,16 @@ api: 'POST /subscribers/import'
   "contacts": [
     {
       "email": "john@domain.com",
-      "name": "John"
+      "name": "John Doe",
+      "phone": "+1 234 567 8900",
+      "company": "Acme Corp",
+      "job_title": "CEO",
+      "linkedin_url": "https://linkedin.com/in/johndoe",
+      "tags": ["outreach", "vip"],
+      "is_subscribed": false,
+      "additional_info": {
+        "source": "Explorium"
+      }
     }
   ]
 }

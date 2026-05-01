@@ -23,8 +23,28 @@ api: 'POST /subscribers'
   Optional: Target list ID to associate the contact with.
 </ParamField>
 
-<ParamField body="tags" type="string">
+<ParamField body="phone" type="string">
+  Optional: Phone number
+</ParamField>
+
+<ParamField body="company" type="string">
+  Optional: Company name
+</ParamField>
+
+<ParamField body="job_title" type="string">
+  Optional: Job title
+</ParamField>
+
+<ParamField body="linkedin_url" type="string">
+  Optional: LinkedIn profile URL
+</ParamField>
+
+<ParamField body="tags" type="array">
   Optional: List of tags to apply.
+</ParamField>
+
+<ParamField body="is_subscribed" type="boolean">
+  Optional: Subscription status (default: true)
 </ParamField>
 
 <ParamField body="additional_info" type="object">
@@ -37,9 +57,15 @@ api: 'POST /subscribers'
 {
   "email": "sarah@domain.com",
   "name": "Sarah W",
+  "phone": "+1 987 654 3210",
+  "company": "Tech Innovations",
+  "job_title": "Product Manager",
+  "linkedin_url": "https://linkedin.com/in/sarahw",
   "list_id": "list-1234",
+  "is_subscribed": true,
   "additional_info": {
-    "industry": "SaaS"
+    "industry": "SaaS",
+    "tier": "Premium"
   }
 }
 ```
