@@ -55,10 +55,10 @@
           {
             "group": "Audience & Lists",
             "pages": [
-              "api-reference/audiences/subscribers_list",
-              "api-reference/audiences/subscribers_upsert",
-              "api-reference/audiences/subscribers_bulk",
-              "api-reference/audiences/subscribers_import",
+              "api-reference/audiences/contacts_list",
+              "api-reference/audiences/contacts_upsert",
+              "api-reference/audiences/contacts_bulk",
+              "api-reference/audiences/contacts_import",
               "api-reference/audiences/lists_list",
               "api-reference/audiences/lists_get_single",
               "api-reference/audiences/lists_get_recipients",
