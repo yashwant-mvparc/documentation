@@ -1,7 +1,7 @@
 ---
-title: 'Provision New Sender'
-description: 'Initiate DNS/Email verification for a new identity.'
-api: 'POST /sender-emails'
+title: "Provision New Sender"
+description: "Initiate DNS/Email verification for a new identity."
+api: "POST /sender-emails"
 ---
 
 ### Request Body
@@ -15,7 +15,7 @@ api: 'POST /sender-emails'
 </ParamField>
 
 <ParamField body="provider" type="string" required>
-  Provider type (aws_ses, gmail_smtp, wildduck, email_infrastructure, smtp)
+  Provider type (stalwart, gmail_oauth)
 </ParamField>
 
 <ParamField body="from_name" type="string">
@@ -27,27 +27,7 @@ api: 'POST /sender-emails'
 </ParamField>
 
 <ParamField body="verified_domain_id" type="string">
-  Required for 'email_infrastructure' and shared SES
-</ParamField>
-
-<ParamField body="smtp_host" type="string">
-  SMTP host if provider is 'smtp'
-</ParamField>
-
-<ParamField body="smtp_port" type="integer">
-  SMTP port
-</ParamField>
-
-<ParamField body="smtp_username" type="string">
-  SMTP username
-</ParamField>
-
-<ParamField body="smtp_password" type="string">
-  SMTP password
-</ParamField>
-
-<ParamField body="gmail_app_password" type="string">
-  Gmail app password if using gmail_smtp
+  Required for 'stalwart' provider
 </ParamField>
 
 <RequestExample>
@@ -56,9 +36,10 @@ api: 'POST /sender-emails'
 {
   "name": "Global Support Desk",
   "email": "support@yourdomain.com",
-  "provider": "aws_ses",
+  "provider": "stalwart",
   "from_name": "Syntr Support",
-  "reply_to_email": "tickets@yourdomain.com"
+  "reply_to_email": "tickets@yourdomain.com",
+  "verified_domain_id": "b7e1-9283-acde-4912-8839"
 }
 ```
 
@@ -77,3 +58,29 @@ api: 'POST /sender-emails'
 ```
 
 </ResponseExample>
+
+### Connection Guide
+
+Different providers follow distinct setup flows. Follow the instructions below depending on your provider choice:
+
+<Tabs>
+  <Tab title="Stalwart Mail">
+    Stalwart senders are provisioned directly using this POST endpoint.
+    
+    1. First, add and verify your custom domain in the Domain Setup interface (DNS verification).
+    2. Retrieve the `verified_domain_id` (UUID) for your verified domain.
+    3. Make a `POST` request to `/sender-emails` with:
+       * `provider`: `"stalwart"`
+       * `verified_domain_id`: The domain UUID.
+       * `email`: The desired email address matching the domain (e.g. `support@yourdomain.com`).
+  </Tab>
+  <Tab title="Gmail Workspace (OAuth)">
+    Gmail Workspace senders **cannot** be provisioned directly via this POST endpoint. Instead, they must be connected using the web-based Google OAuth flow:
+    
+    1. Initiate the OAuth flow by redirecting the user to:
+       ```http
+       GET /api/v1/auth/google/gmail?returnUrl={YOUR_DASHBOARD_URL}
+       ```
+    2. Once the user completes Google Workspace authentication, Google redirects back to the platform callback, which automatically registers/creates the sender email with `provider`: `"gmail_oauth"`.
+  </Tab>
+</Tabs>

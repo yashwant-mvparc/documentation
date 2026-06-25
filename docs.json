@@ -34,7 +34,11 @@
               "api-reference/senders/senders_list",
               "api-reference/senders/senders_create",
               "api-reference/senders/senders_get",
-              "api-reference/senders/senders_delete"
+              "api-reference/senders/senders_delete",
+              "api-reference/senders/domains_list",
+              "api-reference/senders/domains_create",
+              "api-reference/senders/domains_verify",
+              "api-reference/senders/domains_delete"
             ]
           },
           {

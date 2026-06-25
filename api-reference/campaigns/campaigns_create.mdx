@@ -1,7 +1,7 @@
 ---
-title: 'Create Campaign'
-description: 'Generate a new campaign draft.'
-api: 'POST /campaigns'
+title: "Create Campaign"
+description: "Generate a new campaign draft."
+api: "POST /campaigns"
 ---
 
 ### Request Body
@@ -31,7 +31,7 @@ api: 'POST /campaigns'
 </ParamField>
 
 <ParamField body="recipients" type="array">
-  Inline recipients `[{email, name}]`
+  Inline recipients [\{email, name\}]
 </ParamField>
 
 <ParamField body="scheduled_date" type="string">
@@ -43,7 +43,7 @@ api: 'POST /campaigns'
 </ParamField>
 
 <ParamField body="settings" type="object">
-  `{track_opens: bool, track_clicks: bool, unsubscribe_link: bool}`
+  \{track_opens: bool, track_clicks: bool, unsubscribe_link: bool\}
 </ParamField>
 
 <RequestExample>

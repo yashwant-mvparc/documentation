@@ -1,0 +1,37 @@
+---
+title: "Register Domain"
+description: "Register a new custom domain for email sending."
+api: "POST /domains"
+---
+
+### Request Body
+
+<ParamField body="domain" type="string" required>
+  The domain name (e.g. yourdomain.com)
+</ParamField>
+
+<RequestExample>
+
+```json Request
+{
+  "domain": "yourdomain.com"
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "id": "b7e1-9283-acde-4912-8839",
+    "domain": "yourdomain.com",
+    "verification_status": "pending",
+    "provider": "stalwart"
+  }
+}
+```
+
+</ResponseExample>

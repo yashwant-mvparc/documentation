@@ -136,7 +136,7 @@
                   },
                   "provider": {
                     "type": "string",
-                    "description": "Provider type (aws_ses, gmail_smtp, wildduck, email_infrastructure, smtp)"
+                    "description": "Provider type (stalwart, gmail_oauth)"
                   },
                   "from_name": {
                     "type": "string",
@@ -148,36 +148,17 @@
                   },
                   "verified_domain_id": {
                     "type": "string",
-                    "description": "Required for 'email_infrastructure' and shared SES"
-                  },
-                  "smtp_host": {
-                    "type": "string",
-                    "description": "SMTP host if provider is 'smtp'"
-                  },
-                  "smtp_port": {
-                    "type": "integer",
-                    "description": "SMTP port"
-                  },
-                  "smtp_username": {
-                    "type": "string",
-                    "description": "SMTP username"
-                  },
-                  "smtp_password": {
-                    "type": "string",
-                    "description": "SMTP password"
-                  },
-                  "gmail_app_password": {
-                    "type": "string",
-                    "description": "Gmail app password if using gmail_smtp"
+                    "description": "Required for 'stalwart' provider"
                   }
                 }
               },
               "example": {
                 "name": "Global Support Desk",
                 "email": "support@yourdomain.com",
-                "provider": "aws_ses",
+                "provider": "stalwart",
                 "from_name": "Syntr Support",
-                "reply_to_email": "tickets@yourdomain.com"
+                "reply_to_email": "tickets@yourdomain.com",
+                "verified_domain_id": "b7e1-9283-acde-4912-8839"
               }
             }
           }
@@ -246,6 +227,152 @@
                 "example": {
                   "success": true,
                   "message": "Sender email deleted successfully"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/domains": {
+      "get": {
+        "summary": "List Domains",
+        "description": "Fetch all registered custom domains and their verification statuses.",
+        "tags": [
+          "Senders"
+        ],
+        "operationId": "domains_list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": [
+                    {
+                      "id": "b7e1-9283-acde-4912-8839",
+                      "domain": "yourdomain.com",
+                      "verification_status": "verified",
+                      "provider": "stalwart"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Register Domain",
+        "description": "Register a new custom domain for email sending.",
+        "tags": [
+          "Senders"
+        ],
+        "operationId": "domains_create",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "domain": {
+                    "type": "string",
+                    "description": "The domain name (e.g. yourdomain.com)"
+                  }
+                }
+              },
+              "example": {
+                "domain": "yourdomain.com"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "id": "b7e1-9283-acde-4912-8839",
+                    "domain": "yourdomain.com",
+                    "verification_status": "pending",
+                    "provider": "stalwart"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/domains/{id}": {
+      "delete": {
+        "summary": "Delete Domain",
+        "description": "Permanently delete a domain and its associated senders.",
+        "tags": [
+          "Senders"
+        ],
+        "operationId": "domains_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "message": "Domain deleted successfully"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/domains/{id}/verify": {
+      "post": {
+        "summary": "Verify Domain DNS",
+        "description": "Trigger verification check for the domain's DNS records (MX, SPF, DKIM).",
+        "tags": [
+          "Senders"
+        ],
+        "operationId": "domains_verify",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "id": "b7e1-9283-acde-4912-8839",
+                    "domain": "yourdomain.com",
+                    "verification_status": "verified"
+                  }
                 }
               }
             }

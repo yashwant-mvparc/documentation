@@ -1,0 +1,24 @@
+---
+title: "Verify Domain DNS"
+description: "Trigger verification check for the domain's DNS records (MX, SPF, DKIM)."
+api: "POST /domains/{id}/verify"
+---
+
+<ParamField path="id" type="string" required>
+  The ID of the id.
+</ParamField>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "id": "b7e1-9283-acde-4912-8839",
+    "domain": "yourdomain.com",
+    "verification_status": "verified"
+  }
+}
+```
+
+</ResponseExample>

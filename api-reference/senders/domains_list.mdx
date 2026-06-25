@@ -1,0 +1,23 @@
+---
+title: "List Domains"
+description: "Fetch all registered custom domains and their verification statuses."
+api: "GET /domains"
+---
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": [
+    {
+      "id": "b7e1-9283-acde-4912-8839",
+      "domain": "yourdomain.com",
+      "verification_status": "verified",
+      "provider": "stalwart"
+    }
+  ]
+}
+```
+
+</ResponseExample>
