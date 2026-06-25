@@ -22,16 +22,12 @@ api: "POST /campaigns"
   Fetch from /templates
 </ParamField>
 
-<ParamField body="preview_text" type="string">
-  Preview/Snippet text in inbox
+<ParamField body="recipient_list_ids" type="string[]">
+  List of recipient list UUIDs to target (Fetch from /lists)
 </ParamField>
 
-<ParamField body="recipient_list_ids" type="array">
-  Lists to target
-</ParamField>
-
-<ParamField body="recipients" type="array">
-  Inline recipients [\{email, name\}]
+<ParamField body="recipients" type="object[]">
+  Inline recipients, e.g. `[{"email": "john@domain.com", "name": "John"}]`
 </ParamField>
 
 <ParamField body="scheduled_date" type="string">
@@ -42,10 +38,6 @@ api: "POST /campaigns"
   Initial status (usually 'draft')
 </ParamField>
 
-<ParamField body="settings" type="object">
-  \{track_opens: bool, track_clicks: bool, unsubscribe_link: bool\}
-</ParamField>
-
 <RequestExample>
 
 ```json Request
@@ -53,8 +45,7 @@ api: "POST /campaigns"
   "name": "Summer Sale 2024",
   "subject": "Exclusive 50% Off for you, {{name}}!",
   "sender_email_id": "b7e1-9283-acde-4912-8839",
-  "template_id": "441b-99ef-8872-acde-11b2",
-  "preview_text": "Don't miss our hottest sale of the year!"
+  "template_id": "441b-99ef-8872-acde-11b2"
 }
 ```
 

@@ -26,16 +26,12 @@ api: "POST /campaigns/send-now"
   Template ID
 </ParamField>
 
-<ParamField body="recipient_list_ids" type="array">
-  List IDs to target
+<ParamField body="recipient_list_ids" type="string[]">
+  List of recipient list UUIDs to target (Fetch from /lists)
 </ParamField>
 
-<ParamField body="recipients" type="array">
-  List of \{email, name\}
-</ParamField>
-
-<ParamField body="preview_text" type="string">
-  Inbox snippet
+<ParamField body="recipients" type="object[]">
+  List of `{"email": "john@domain.com", "name": "John"}` objects
 </ParamField>
 
 <RequestExample>
