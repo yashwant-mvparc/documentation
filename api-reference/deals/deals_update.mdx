@@ -1,56 +1,92 @@
 ---
 title: "Update Deal"
-description: "Modify deal parameters, monetary value, expected close date, or custom attributes."
+description: "Unified mutation API to update deal values, move stages, mark won or lost, reassign contacts, or update custom fields all at once."
 api: "PUT /deals/{id}"
 ---
 
 ### Path Parameters
 
 <ParamField path="id" type="string" required>
-  The unique UUID of the deal to update.
+  The unique UUID of the deal to update. Can also be passed in the request body as `id`.
 </ParamField>
 
 ### Request Body
+
+All properties are optional — you only pass what you want to change:
+
+<ParamField body="stage_id" type="string">
+  Move the deal to a new stage in the pipeline. Automatically updates the transition timestamp.
+</ParamField>
+
+<ParamField body="status" type="string">
+  Set deal status:
+  - `"won"`: Marks the deal as won. Automatically sets `won_at` timestamp.
+  - `"lost"`: Marks the deal as lost. Automatically sets `lost_at` timestamp.
+  - `"open"`: Re-opens a closed deal.
+</ParamField>
+
+<ParamField body="actual_revenue" type="number">
+  The realized deal revenue (used when marking won).
+</ParamField>
+
+<ParamField body="lost_reason" type="string">
+  Reason for losing the deal (e.g., `budget`, `competitor`, `timeline`, `feature_gap`).
+</ParamField>
+
+<ParamField body="value" type="number">
+  Updated monetary deal size.
+</ParamField>
+
+<ParamField body="currency" type="string">
+  Currency code (e.g., `USD`, `EUR`, `INR`).
+</ParamField>
+
+<ParamField body="close_date" type="string">
+  Updated expected close date (`YYYY-MM-DD`).
+</ParamField>
 
 <ParamField body="title" type="string">
   Updated title for the deal.
 </ParamField>
 
-<ParamField body="value" type="number">
-  Updated monetary value.
-</ParamField>
-
-<ParamField body="currency" type="string">
-  Currency code (e.g., `USD`, `EUR`).
-</ParamField>
-
-<ParamField body="close_date" type="string">
-  Updated close date in `YYYY-MM-DD` format.
-</ParamField>
-
 <ParamField body="company_id" type="string">
-  Re-assign to a different company record.
+  Reassign to a different company UUID. Pass `null` to disassociate.
 </ParamField>
 
 <ParamField body="contact_id" type="string">
-  Re-assign primary contact.
+  Reassign primary contact UUID. Pass `null` to disassociate.
 </ParamField>
 
 <ParamField body="notes" type="string">
-  Updated notes or summary.
+  Updated notes or summary for the opportunity.
 </ParamField>
 
 <ParamField body="attributes" type="object">
-  Updated custom attributes or field values.
+  Custom attributes and dynamic key-value properties.
 </ParamField>
 
 <RequestExample>
 
-```json Request
+```json Move Stage
 {
-  "value": 55000,
-  "close_date": "2026-12-20",
-  "notes": "Expanded scope to include premium multi-region support."
+  "stage_id": "stage-proposal-uuid",
+  "value": 55000
+}
+```
+
+```json Mark Won
+{
+  "status": "won",
+  "actual_revenue": 55000,
+  "notes": "Contract signed and onboarding scheduled."
+}
+```
+
+```json Mark Lost
+{
+  "status": "lost",
+  "lost_reason": "budget",
+  "notes": "Postponed migration to next fiscal year."
 }
 ```
 
@@ -67,9 +103,12 @@ api: "PUT /deals/{id}"
       "title": "Global Tech Licensing",
       "value": 55000,
       "currency": "USD",
-      "status": "open",
-      "close_date": "2026-12-20",
-      "updated_at": "2026-11-20T12:10:00.000Z"
+      "status": "won",
+      "stage_id": "stage-proposal-uuid",
+      "actual_revenue": 55000,
+      "won_at": "2026-11-20T12:20:00.000Z",
+      "close_date": "2026-12-15",
+      "updated_at": "2026-11-20T12:20:00.000Z"
     }
   }
 }

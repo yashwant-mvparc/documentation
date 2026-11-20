@@ -2013,13 +2013,21 @@
     },
     "/deals": {
       "get": {
-        "summary": "List Deals",
-        "description": "Fetch deals across pipelines with stage breakdown, filtering, and summary metrics.",
+        "summary": "Fetch Deals",
+        "description": "Retrieve deals across pipelines with stage breakdown, filtering, or fetch an individual deal directly by ID.",
         "tags": [
           "Deals & Pipelines"
         ],
         "operationId": "deals_list",
         "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Optional deal UUID to fetch details for a single deal directly"
+          },
           {
             "name": "pipeline_id",
             "in": "query",
@@ -2225,7 +2233,7 @@
       },
       "put": {
         "summary": "Update Deal",
-        "description": "Modify deal parameters, monetary value, expected close date, or custom attributes.",
+        "description": "Unified mutation API to update deal values, move stages, mark won or lost, reassign contacts, or update custom fields all at once.",
         "tags": [
           "Deals & Pipelines"
         ],
@@ -2247,23 +2255,85 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "title": {
-                    "type": "string"
+                  "stage_id": {
+                    "type": "string",
+                    "description": "Move deal to a new pipeline stage"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "open",
+                      "won",
+                      "lost"
+                    ],
+                    "description": "Set status to won, lost, or open"
+                  },
+                  "actual_revenue": {
+                    "type": "number",
+                    "description": "Realized revenue when marking won"
+                  },
+                  "lost_reason": {
+                    "type": "string",
+                    "description": "Reason when marking lost"
                   },
                   "value": {
-                    "type": "number"
+                    "type": "number",
+                    "description": "Deal value"
+                  },
+                  "currency": {
+                    "type": "string",
+                    "description": "Currency code (USD, EUR, INR)"
                   },
                   "close_date": {
-                    "type": "string"
+                    "type": "string",
+                    "format": "date",
+                    "description": "Expected close date YYYY-MM-DD"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Deal title"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "Associated company UUID"
+                  },
+                  "contact_id": {
+                    "type": "string",
+                    "description": "Primary contact UUID"
                   },
                   "notes": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Notes or summary"
+                  },
+                  "attributes": {
+                    "type": "object",
+                    "description": "Custom dynamic attributes"
                   }
                 }
               },
-              "example": {
-                "value": 55000,
-                "close_date": "2026-12-20"
+              "examples": {
+                "moveStage": {
+                  "summary": "Move Stage",
+                  "value": {
+                    "stage_id": "stage-proposal-uuid",
+                    "value": 55000
+                  }
+                },
+                "markWon": {
+                  "summary": "Mark Won",
+                  "value": {
+                    "status": "won",
+                    "actual_revenue": 55000,
+                    "notes": "Contract signed"
+                  }
+                },
+                "markLost": {
+                  "summary": "Mark Lost",
+                  "value": {
+                    "status": "lost",
+                    "lost_reason": "budget"
+                  }
+                }
               }
             }
           }
@@ -2314,301 +2384,6 @@
                   "success": true,
                   "data": {
                     "message": "Deal deleted"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/deals/{id}/stage": {
-      "put": {
-        "summary": "Move Deal Stage",
-        "description": "Progress a deal to a new stage in its sales pipeline, updating stage probability and transition history.",
-        "tags": [
-          "Deals & Pipelines"
-        ],
-        "operationId": "deals_move_stage",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Deal UUID"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "stage_id"
-                ],
-                "properties": {
-                  "stage_id": {
-                    "type": "string",
-                    "description": "Destination stage UUID"
-                  }
-                }
-              },
-              "example": {
-                "stage_id": "stage-proposal-uuid"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Deal moved to new stage",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": true,
-                  "data": {
-                    "deal": {
-                      "id": "deal-uuid",
-                      "stage_id": "stage-proposal-uuid"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/deals/{id}/won": {
-      "post": {
-        "summary": "Mark Deal as Won",
-        "description": "Close a deal as Won, recording final revenue, close timestamp, and updating CRM sales reports.",
-        "tags": [
-          "Deals & Pipelines"
-        ],
-        "operationId": "deals_mark_won",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Deal UUID"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "actual_revenue": {
-                    "type": "number"
-                  },
-                  "notes": {
-                    "type": "string"
-                  }
-                }
-              },
-              "example": {
-                "actual_revenue": 55000,
-                "notes": "Contract signed"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Deal marked won",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": true,
-                  "data": {
-                    "deal": {
-                      "id": "deal-uuid",
-                      "status": "won"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/deals/{id}/lost": {
-      "post": {
-        "summary": "Mark Deal as Lost",
-        "description": "Close a deal as Lost, recording lost reason, feedback, and timestamp for conversion analysis.",
-        "tags": [
-          "Deals & Pipelines"
-        ],
-        "operationId": "deals_mark_lost",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Deal UUID"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "lost_reason"
-                ],
-                "properties": {
-                  "lost_reason": {
-                    "type": "string"
-                  },
-                  "notes": {
-                    "type": "string"
-                  }
-                }
-              },
-              "example": {
-                "lost_reason": "budget",
-                "notes": "Postponed until next year"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Deal marked lost",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": true,
-                  "data": {
-                    "deal": {
-                      "id": "deal-uuid",
-                      "status": "lost"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/deals/{id}/activities": {
-      "get": {
-        "summary": "Get Deal Activities",
-        "description": "Retrieve chronological activity timeline for a deal.",
-        "tags": [
-          "Deals & Pipelines"
-        ],
-        "operationId": "deals_get_activities",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Deal UUID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Activities retrieved",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": true,
-                  "data": {
-                    "activities": []
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Add Deal Activity",
-        "description": "Record a new call, meeting, note, or email on the deal timeline.",
-        "tags": [
-          "Deals & Pipelines"
-        ],
-        "operationId": "deals_create_activity",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Deal UUID"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "type",
-                  "title"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "note",
-                      "call",
-                      "email",
-                      "meeting",
-                      "task"
-                    ]
-                  },
-                  "title": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  }
-                }
-              },
-              "example": {
-                "type": "call",
-                "title": "Discovery Call",
-                "description": "Reviewed requirements"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Activity recorded",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": true,
-                  "data": {
-                    "activity": {
-                      "id": "act-uuid",
-                      "title": "Discovery Call"
-                    }
                   }
                 }
               }

@@ -1,8 +1,14 @@
 ---
-title: "List Pipelines"
-description: "Retrieve all sales pipelines and their configured stages, ordering, and win probabilities."
+title: "Pipelines & Stages"
+description: "Retrieve configured sales pipelines, stages, ordering, and default win probabilities."
 api: "GET /pipelines"
 ---
+
+### Query Parameters
+
+<ParamField query="id" type="string">
+  Optional: Pass a specific pipeline UUID to fetch only that pipeline.
+</ParamField>
 
 ### Response
 
@@ -32,7 +38,7 @@ api: "GET /pipelines"
           },
           {
             "id": "stage-prop-uuid",
-            "name": "Proposal",
+            "name": "Proposal Sent",
             "position": 2,
             "probability": 60
           },

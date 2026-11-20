@@ -1,36 +1,40 @@
 ---
-title: "List Deals"
-description: "Fetch deals across pipelines with stage breakdown, filtering, and summary metrics."
+title: "Fetch Deals"
+description: "Retrieve deals across pipelines with stage breakdown, filtering, or fetch a specific deal directly by ID."
 api: "GET /deals"
 ---
 
 ### Query Parameters
 
+<ParamField query="id" type="string">
+  Optional: Pass a specific deal UUID to retrieve full details for that single deal (including its stage, company, primary contact, and contact roster).
+</ParamField>
+
 <ParamField query="pipeline_id" type="string">
-  Filter deals by specific pipeline UUID. If omitted, default pipeline is returned.
+  Filter deals by a specific pipeline UUID. If omitted, the default sales pipeline is returned.
 </ParamField>
 
 <ParamField query="stage_id" type="string">
-  Filter deals by a specific stage UUID.
-</ParamField>
-
-<ParamField query="owner_id" type="string">
-  Filter deals by assigned team member UUID.
-</ParamField>
-
-<ParamField query="search" type="string">
-  Search keyword in deal title, notes, or company name.
+  Filter deals by a specific pipeline stage UUID.
 </ParamField>
 
 <ParamField query="status" type="string">
-  Filter by status: `open`, `won`, or `lost`.
+  Filter by deal status: `open`, `won`, or `lost`.
+</ParamField>
+
+<ParamField query="search" type="string">
+  Search keyword across deal title, notes, or associated company name.
+</ParamField>
+
+<ParamField query="owner_id" type="string">
+  Filter by assigned team member UUID.
 </ParamField>
 
 ### Response
 
 <ResponseExample>
 
-```json Response
+```json Response (List / Board View)
 {
   "success": true,
   "data": {
@@ -84,6 +88,37 @@ api: "GET /deals"
         "stage_id": "stage-lead-uuid"
       }
     ]
+  }
+}
+```
+
+```json Response (Single Deal via ?id=...)
+{
+  "success": true,
+  "data": {
+    "deal": {
+      "id": "deal-9811-uuid",
+      "title": "Enterprise Cloud Deal",
+      "value": 25000,
+      "currency": "USD",
+      "status": "open",
+      "stage": {
+        "id": "stage-lead-uuid",
+        "name": "Lead",
+        "probability": 10
+      },
+      "company": {
+        "id": "company-9910-uuid",
+        "name": "Global Tech Corp"
+      },
+      "primary_contact": {
+        "id": "contact-7712-uuid",
+        "name": "Sarah Connor",
+        "email": "sarah@globaltech.com"
+      },
+      "close_date": "2026-12-31",
+      "created_at": "2026-11-20T12:00:00.000Z"
+    }
   }
 }
 ```
