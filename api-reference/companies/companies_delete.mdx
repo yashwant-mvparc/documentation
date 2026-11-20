@@ -1,0 +1,26 @@
+---
+title: "Delete Company"
+description: "Soft-delete a company record. Detaches associated contacts and deals safely."
+api: "DELETE /companies/{id}"
+---
+
+### Path Parameters
+
+<ParamField path="id" type="string" required>
+  The unique UUID of the company to delete. Can also be passed in the request body as `id` or query parameter `?id=...`.
+</ParamField>
+
+### Response
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "message": "Company deleted"
+  }
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,84 @@
+---
+title: "Fetch Companies"
+description: "Retrieve organizations and companies with roll-up metrics (contacts, active deals, last activity), search, pagination, or fetch an individual company by ID."
+api: "GET /companies"
+---
+
+### Query Parameters
+
+<ParamField query="id" type="string">
+  Optional: Pass a specific company UUID to fetch complete profile details, roll-ups, and associated contacts for that single company directly.
+</ParamField>
+
+<ParamField query="search" type="string">
+  Search keyword matching against company name or website domain.
+</ParamField>
+
+<ParamField query="page" type="number">
+  Page number for pagination. Defaults to `1`.
+</ParamField>
+
+<ParamField query="limit" type="number">
+  Number of company records to retrieve per page. Defaults to `50`.
+</ParamField>
+
+<ParamField query="sort" type="string">
+  Field to sort by: `contacts`, `open_deals`, `last_activity`, `created`, or `name`. Defaults to `contacts`.
+</ParamField>
+
+<ParamField query="dir" type="string">
+  Sort direction: `asc` or `desc`. Defaults to `desc`.
+</ParamField>
+
+<ParamField query="owner_id" type="string">
+  Filter companies assigned to a specific team member UUID.
+</ParamField>
+
+### Response
+
+<ResponseExample>
+
+```json Response (List View)
+{
+  "success": true,
+  "data": {
+    "rows": [
+      {
+        "id": "c19b-44a1-b81a-9921ef45",
+        "name": "Stripe",
+        "domain": "stripe.com",
+        "website": "https://stripe.com",
+        "contacts": 14,
+        "open_deals": 2,
+        "open_value": 75000,
+        "last_activity_at": "2026-11-20T12:00:00.000Z",
+        "created_at": "2026-10-15T09:30:00.000Z"
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "limit": 50,
+      "total": 1
+    }
+  }
+}
+```
+
+```json Response (Single Company via ?id=...)
+{
+  "success": true,
+  "data": {
+    "id": "c19b-44a1-b81a-9921ef45",
+    "name": "Stripe",
+    "domain": "stripe.com",
+    "website": "https://stripe.com",
+    "contacts": 14,
+    "open_deals": 2,
+    "open_value": 75000,
+    "last_activity_at": "2026-11-20T12:00:00.000Z",
+    "created_at": "2026-10-15T09:30:00.000Z"
+  }
+}
+```
+
+</ResponseExample>

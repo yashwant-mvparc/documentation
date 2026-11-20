@@ -2466,6 +2466,261 @@
           }
         }
       }
+    },
+    "/companies": {
+      "get": {
+        "summary": "Fetch Companies",
+        "description": "Retrieve companies with roll-ups, filtering, or fetch a single company directly by ?id=...",
+        "tags": [
+          "Companies"
+        ],
+        "operationId": "companies_list",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Optional company UUID to fetch details for a single company directly"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search keyword matching name or domain"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 50
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "contacts"
+            }
+          },
+          {
+            "name": "dir",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "desc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "rows": [
+                      {
+                        "id": "c19b-44a1-b81a-9921ef45",
+                        "name": "Stripe",
+                        "domain": "stripe.com",
+                        "website": "https://stripe.com",
+                        "contacts": 14,
+                        "open_deals": 2,
+                        "open_value": 75000
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Company",
+        "description": "Register a new business account or organization.",
+        "tags": [
+          "Companies"
+        ],
+        "operationId": "companies_create",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Company name"
+                  },
+                  "domain": {
+                    "type": "string",
+                    "description": "Domain name"
+                  },
+                  "website": {
+                    "type": "string",
+                    "description": "Full website URL"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "industry": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "name": "Acme Innovations",
+                "domain": "acme.com",
+                "website": "https://acme.com",
+                "industry": "SaaS"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Company created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "id": "c19b-44a1-b81a-9921ef45",
+                    "name": "Acme Innovations",
+                    "domain": "acme.com"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/companies/{id}": {
+      "put": {
+        "summary": "Update Company",
+        "description": "Update company properties, domain, phone, or attributes.",
+        "tags": [
+          "Companies"
+        ],
+        "operationId": "companies_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Company UUID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "website": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "industry": {
+                    "type": "string"
+                  },
+                  "attributes": {
+                    "type": "object"
+                  }
+                }
+              },
+              "example": {
+                "industry": "Enterprise Software",
+                "phone": "+1 800 555 9900"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Company updated",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "id": "c19b-44a1-b81a-9921ef45",
+                    "name": "Acme Innovations",
+                    "industry": "Enterprise Software"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Company",
+        "description": "Soft-delete a company and detach associated contacts and deals.",
+        "tags": [
+          "Companies"
+        ],
+        "operationId": "companies_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Company UUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Company deleted",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "message": "Company deleted"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

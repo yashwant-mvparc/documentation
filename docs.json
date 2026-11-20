@@ -105,6 +105,15 @@
               "api-reference/deals/deals_delete",
               "api-reference/deals/pipelines"
             ]
+          },
+          {
+            "group": "Companies",
+            "pages": [
+              "api-reference/companies/companies_list",
+              "api-reference/companies/companies_create",
+              "api-reference/companies/companies_update",
+              "api-reference/companies/companies_delete"
+            ]
           }
         ]
       }

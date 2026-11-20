@@ -1,0 +1,64 @@
+---
+title: "Create Company"
+description: "Register a new business account or organization. Automatically deduplicates by corporate domain."
+api: "POST /companies"
+---
+
+### Request Body
+
+<ParamField body="name" type="string" required>
+  The legal or display name of the company (e.g., `Acme Innovations`).
+</ParamField>
+
+<ParamField body="domain" type="string">
+  Corporate email/web domain (e.g., `acme.com`). Automatically cleans and normalizes domains.
+</ParamField>
+
+<ParamField body="website" type="string">
+  Full website URL (e.g., `https://acme.com`). If domain is omitted, domain is inferred from the website URL.
+</ParamField>
+
+<ParamField body="phone" type="string">
+  Primary business phone number.
+</ParamField>
+
+<ParamField body="industry" type="string">
+  Industry or market vertical (e.g., `Fintech`, `Healthcare`, `SaaS`).
+</ParamField>
+
+<ParamField body="owner_id" type="string">
+  UUID of the assigned account executive or team member.
+</ParamField>
+
+<RequestExample>
+
+```json Request
+{
+  "name": "Acme Innovations",
+  "domain": "acme.com",
+  "website": "https://acme.com",
+  "industry": "SaaS",
+  "phone": "+1 800 555 0199"
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "id": "c19b-44a1-b81a-9921ef45",
+    "name": "Acme Innovations",
+    "domain": "acme.com",
+    "website": "https://acme.com",
+    "industry": "SaaS",
+    "phone": "+1 800 555 0199",
+    "created_at": "2026-11-20T12:00:00.000Z"
+  }
+}
+```
+
+</ResponseExample>

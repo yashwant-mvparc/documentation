@@ -1,0 +1,74 @@
+---
+title: "Update Company"
+description: "Modify properties, address, website, or custom attributes for an existing company record."
+api: "PUT /companies/{id}"
+---
+
+### Path Parameters
+
+<ParamField path="id" type="string" required>
+  The unique UUID of the company to update. Can also be passed in the request body as `id`.
+</ParamField>
+
+### Request Body
+
+All fields are optional — you only include what you want to change:
+
+<ParamField body="name" type="string">
+  Updated company name.
+</ParamField>
+
+<ParamField body="domain" type="string">
+  Updated primary domain.
+</ParamField>
+
+<ParamField body="website" type="string">
+  Updated company website URL.
+</ParamField>
+
+<ParamField body="phone" type="string">
+  Updated primary business phone number.
+</ParamField>
+
+<ParamField body="industry" type="string">
+  Updated industry sector.
+</ParamField>
+
+<ParamField body="owner_id" type="string">
+  Reassign account owner UUID.
+</ParamField>
+
+<ParamField body="attributes" type="object">
+  Custom attributes and dynamic key-value properties.
+</ParamField>
+
+<RequestExample>
+
+```json Request
+{
+  "industry": "Enterprise Software",
+  "phone": "+1 800 555 9900",
+  "website": "https://acme-global.com"
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "id": "c19b-44a1-b81a-9921ef45",
+    "name": "Acme Innovations",
+    "domain": "acme.com",
+    "website": "https://acme-global.com",
+    "industry": "Enterprise Software",
+    "phone": "+1 800 555 9900",
+    "updated_at": "2026-11-20T12:00:00.000Z"
+  }
+}
+```
+
+</ResponseExample>
