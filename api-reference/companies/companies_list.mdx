@@ -11,7 +11,35 @@ api: "GET /companies"
 </ParamField>
 
 <ParamField query="search" type="string">
-  Search keyword matching against company name or website domain.
+  Search keyword matching against company name, website domain, industry, location (city/country), or description.
+</ParamField>
+
+<ParamField query="name" type="string">
+  Filter companies by company name (case-insensitive substring match).
+</ParamField>
+
+<ParamField query="domain" type="string">
+  Filter companies by email/website domain (e.g. `stripe.com`).
+</ParamField>
+
+<ParamField query="website" type="string">
+  Filter companies by website URL.
+</ParamField>
+
+<ParamField query="industry" type="string">
+  Filter companies by industry (e.g. `Technology`, `Healthcare`).
+</ParamField>
+
+<ParamField query="size" type="string">
+  Filter companies by team size (e.g. `1-10`, `11-50`, `51-200`).
+</ParamField>
+
+<ParamField query="city" type="string">
+  Filter companies located in a specific city.
+</ParamField>
+
+<ParamField query="country" type="string">
+  Filter companies located in a specific country.
 </ParamField>
 
 <ParamField query="page" type="number">

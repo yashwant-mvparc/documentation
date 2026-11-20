@@ -10,20 +10,52 @@ api: "GET /deals"
   Optional: Pass a specific deal UUID to retrieve full details for that single deal (including its stage, company, primary contact, and contact roster).
 </ParamField>
 
-<ParamField query="pipeline_id" type="string">
-  Filter deals by a specific pipeline UUID. If omitted, the default sales pipeline is returned.
+<ParamField query="search" type="string">
+  Search keyword matching deal title, notes, associated company name/domain, or primary contact name/email.
 </ParamField>
 
-<ParamField query="stage_id" type="string">
-  Filter deals by a specific pipeline stage UUID.
+<ParamField query="title" type="string">
+  Filter deals by deal title (case-insensitive substring match).
+</ParamField>
+
+<ParamField query="company" type="string">
+  Filter deals by associated company name or domain.
+</ParamField>
+
+<ParamField query="contact_id" type="string">
+  Filter deals linked to a specific contact UUID.
+</ParamField>
+
+<ParamField query="company_id" type="string">
+  Filter deals linked to a specific company UUID.
+</ParamField>
+
+<ParamField query="contact" type="string">
+  Filter deals linked to a contact name or email address.
+</ParamField>
+
+<ParamField query="min_value" type="number">
+  Filter deals with a value greater than or equal to this amount.
+</ParamField>
+
+<ParamField query="max_value" type="number">
+  Filter deals with a value less than or equal to this amount.
+</ParamField>
+
+<ParamField query="currency" type="string">
+  Filter deals by currency code (e.g. `USD`, `EUR`).
 </ParamField>
 
 <ParamField query="status" type="string">
   Filter by deal status: `open`, `won`, or `lost`.
 </ParamField>
 
-<ParamField query="search" type="string">
-  Search keyword across deal title, notes, or associated company name.
+<ParamField query="pipeline_id" type="string">
+  Filter deals by a specific pipeline UUID. If omitted, the default sales pipeline is returned.
+</ParamField>
+
+<ParamField query="stage_id" type="string">
+  Filter deals by a specific pipeline stage UUID.
 </ParamField>
 
 <ParamField query="owner_id" type="string">
