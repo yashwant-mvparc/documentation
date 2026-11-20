@@ -7,19 +7,43 @@ api: 'GET /subscribers'
 ### Query Parameters
 
 <ParamField query="page" type="integer">
-  Page number
+  Page number. Defaults to `1`.
 </ParamField>
 
 <ParamField query="limit" type="integer">
-  Number of records per page
+  Number of records per page. Defaults to `20`.
 </ParamField>
 
 <ParamField query="search" type="string">
-  Filter by name or email
+  Filter by name, email, or company.
+</ParamField>
+
+<ParamField query="company" type="string">
+  Filter contacts by company name (case-insensitive substring match or employer association).
+</ParamField>
+
+<ParamField query="company_id" type="string">
+  Filter contacts linked to a specific company record UUID.
+</ParamField>
+
+<ParamField query="email" type="string">
+  Filter contacts matching an email address.
+</ParamField>
+
+<ParamField query="phone" type="string">
+  Filter contacts matching a phone number.
+</ParamField>
+
+<ParamField query="tags" type="string">
+  Filter contacts by tag (comma-separated string).
+</ParamField>
+
+<ParamField query="is_subscribed" type="boolean">
+  Filter contacts by email subscription status (`true` or `false`).
 </ParamField>
 
 <ParamField query="recipient_list_id" type="string">
-  Filter contacts belonging to a specific segment.
+  Filter contacts belonging to a specific segment or list ID.
 </ParamField>
 
 <ResponseExample>
@@ -30,13 +54,24 @@ api: 'GET /subscribers'
   "data": {
     "recipients": [
       {
-        "id": "rec-123",
-        "email": "john@doe.com",
-        "name": "John",
+        "id": "c1928596-5111-4f0d-be02-2ddc6ba98556",
+        "email": "sarah@nexusventures.ai",
+        "name": "Sarah Connor",
+        "first_name": "Sarah",
+        "last_name": "Connor",
+        "company": "Nexus Ventures",
+        "company_id": "5558f46e-4e07-4dec-a980-04c356d6a543",
+        "job_title": "Partner",
+        "phone": "+14155551234",
+        "is_subscribed": true,
+        "tags": ["vip", "marketing"],
+        "attributes": {
+          "investment_tier": "Seed"
+        },
         "lists": [
           {
-            "id": "list-1",
-            "name": "Leads"
+            "id": "c7f039ba-e8f0-463b-8b18-c2ba0eea4730",
+            "name": "Contacts"
           }
         ]
       }
