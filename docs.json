@@ -114,6 +114,14 @@
               "api-reference/companies/companies_update",
               "api-reference/companies/companies_delete"
             ]
+          },
+          {
+            "group": "Custom Attributes",
+            "pages": [
+              "api-reference/attributes/attributes_list",
+              "api-reference/attributes/attributes_create",
+              "api-reference/attributes/attributes_delete"
+            ]
           }
         ]
       }

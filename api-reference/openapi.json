@@ -2721,6 +2721,126 @@
           }
         }
       }
+    },
+    "/attributes": {
+      "get": {
+        "summary": "Fetch Attributes",
+        "description": "Retrieve all available fields and custom properties for contacts, companies, or deals.",
+        "operationId": "fetchAttributes",
+        "parameters": [
+          {
+            "name": "object",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "contacts",
+                "companies",
+                "deals"
+              ],
+              "default": "contacts"
+            },
+            "description": "The target entity object to list attributes for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attributes retrieved successfully"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Attribute",
+        "description": "Register a new custom attribute or property for contacts, companies, or deals.",
+        "operationId": "createAttribute",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "object",
+                  "name"
+                ],
+                "properties": {
+                  "object": {
+                    "type": "string",
+                    "enum": [
+                      "contacts",
+                      "companies",
+                      "deals"
+                    ],
+                    "description": "The target entity object"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The display name of the attribute (e.g. Customer Tier)"
+                  },
+                  "key": {
+                    "type": "string",
+                    "description": "The programmatic slug/key (e.g. customer_tier). Auto-derived if omitted."
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "text",
+                      "number",
+                      "currency",
+                      "date",
+                      "boolean",
+                      "select"
+                    ],
+                    "default": "text",
+                    "description": "The attribute data type"
+                  },
+                  "options": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Option list when type is select"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Optional description"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Attribute created successfully"
+          }
+        }
+      }
+    },
+    "/attributes/{id}": {
+      "delete": {
+        "summary": "Delete Attribute",
+        "description": "Remove a custom attribute by ID. System attributes cannot be deleted.",
+        "operationId": "deleteAttribute",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "The UUID of the custom attribute to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attribute deleted successfully"
+          }
+        }
+      }
     }
   },
   "components": {

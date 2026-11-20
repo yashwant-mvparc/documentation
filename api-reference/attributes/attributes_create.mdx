@@ -1,0 +1,87 @@
+---
+title: "Create Attribute"
+api: "POST /attributes"
+description: "Register a new custom attribute or property for contacts, companies, or deals."
+---
+
+## Overview
+
+Define a new custom attribute on a standard entity. Once registered, this property is available across API requests, is typed in the Syntr web UI table and filters, and can be used for email template personalization.
+
+### Request Body
+
+<ParamField body="object" type="string" required>
+  The target entity object. Must be one of: `contacts`, `companies`, or `deals`.
+</ParamField>
+
+<ParamField body="name" type="string" required>
+  The human-friendly display label (e.g., `Customer Tier`, `Lead Priority`).
+</ParamField>
+
+<ParamField body="key" type="string">
+  The programmatic key / slug (e.g., `customer_tier`). If omitted, it is automatically generated from `name`.
+</ParamField>
+
+<ParamField body="type" type="string" default="text">
+  The attribute data type.
+  Supported types: `text`, `number`, `currency`, `date`, `boolean`, `select`.
+</ParamField>
+
+<ParamField body="options" type="array">
+  List of allowed option strings when `type` is `select` (e.g., `["Free", "Starter", "Enterprise"]`).
+</ParamField>
+
+<ParamField body="description" type="string">
+  Optional context or description for team members.
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the attribute was successfully registered.
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  The created attribute schema details including `id`, `key`, `name`, and `options`.
+</ResponseField>
+
+<RequestExample>
+```bash cURL
+curl --request POST \
+  --url https://api-prod.syntr.co/api/v1/email-marketing/attributes \
+  --header 'Content-Type: application/json' \
+  --header 'X-API-Key: <your-api-key>' \
+  --data '{
+    "object": "contacts",
+    "name": "Customer Tier",
+    "key": "customer_tier",
+    "type": "select",
+    "options": ["Free", "Starter", "Enterprise"]
+  }'
+```
+</RequestExample>
+
+<ResponseExample>
+```json 201 Created
+{
+  "success": true,
+  "data": {
+    "id": "1e48a03b-cb6e-47fd-aa0b-46163ff2cd8a",
+    "object": "contacts",
+    "name": "Customer Tier",
+    "key": "customer_tier",
+    "type": "select",
+    "options": [
+      { "id": "free", "label": "Free", "color": "slate" },
+      { "id": "starter", "label": "Starter", "color": "slate" },
+      { "id": "enterprise", "label": "Enterprise", "color": "slate" }
+    ],
+    "description": null,
+    "is_system": false,
+    "is_required": false,
+    "default_value": null
+  },
+  "message": "Attribute created successfully."
+}
+```
+</ResponseExample>

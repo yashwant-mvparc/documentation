@@ -1,0 +1,45 @@
+---
+title: "Delete Attribute"
+api: "DELETE /attributes/{id}"
+description: "Remove a custom attribute by ID. System-level attributes cannot be deleted."
+---
+
+## Overview
+
+Permanently removes a custom attribute definition from your organization's schema.
+
+> [!NOTE]
+> System attributes (e.g., standard email, name, deal value, stage) are protected and will return `400 Bad Request` if deletion is attempted.
+
+### Path Parameters
+
+<ParamField path="id" type="string" required>
+  The UUID of the custom attribute to delete.
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  `true` when successfully deleted.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  Confirmation message.
+</ResponseField>
+
+<RequestExample>
+```bash cURL
+curl --request DELETE \
+  --url https://api-prod.syntr.co/api/v1/email-marketing/attributes/1e48a03b-cb6e-47fd-aa0b-46163ff2cd8a \
+  --header 'X-API-Key: <your-api-key>'
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200 OK
+{
+  "success": true,
+  "message": "Attribute deleted successfully."
+}
+```
+</ResponseExample>

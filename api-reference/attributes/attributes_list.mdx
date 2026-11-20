@@ -1,0 +1,98 @@
+---
+title: "Fetch Attributes"
+api: "GET /attributes"
+description: "Retrieve all available fields and custom properties for contacts, companies, or deals."
+---
+
+## Overview
+
+Use this endpoint to inspect the available fields on any core CRM entity. It returns both built-in standard properties and any custom attributes defined by your organization.
+
+### Query Parameters
+
+<ParamField query="object" type="string" default="contacts">
+  The target entity object to list attributes for.
+  Supported values: `contacts`, `companies`, `deals`.
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the request was successful.
+</ResponseField>
+
+<ResponseField name="data" type="array">
+  List of attribute objects.
+  <Expandable title="Attribute properties">
+    <ResponseField name="id" type="string">
+      Unique UUID of the attribute.
+    </ResponseField>
+    <ResponseField name="object" type="string">
+      The entity type (`contacts`, `companies`, or `deals`).
+    </ResponseField>
+    <ResponseField name="name" type="string">
+      Human-readable display name (e.g., `Customer Tier`).
+    </ResponseField>
+    <ResponseField name="key" type="string">
+      Unique identifier/slug for API payloads (e.g., `customer_tier`).
+    </ResponseField>
+    <ResponseField name="type" type="string">
+      Data type: `text`, `number`, `currency`, `date`, `boolean`, or `select`.
+    </ResponseField>
+    <ResponseField name="options" type="array">
+      Available option choices when type is `select`.
+    </ResponseField>
+    <ResponseField name="is_system" type="boolean">
+      `true` for built-in system fields; `false` for user-created custom attributes.
+    </ResponseField>
+    <ResponseField name="is_required" type="boolean">
+      Whether this attribute is marked mandatory.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+```bash cURL
+curl --request GET \
+  --url 'https://api-prod.syntr.co/api/v1/email-marketing/attributes?object=contacts' \
+  --header 'X-API-Key: <your-api-key>'
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200 OK
+{
+  "success": true,
+  "data": [
+    {
+      "id": "41cded8a-49eb-44e7-bc9f-22646bc34305",
+      "object": "contacts",
+      "name": "Email",
+      "key": "email",
+      "type": "email",
+      "options": null,
+      "description": null,
+      "is_system": true,
+      "is_required": true,
+      "default_value": null
+    },
+    {
+      "id": "1e48a03b-cb6e-47fd-aa0b-46163ff2cd8a",
+      "object": "contacts",
+      "name": "Customer Tier",
+      "key": "customer_tier",
+      "type": "select",
+      "options": [
+        { "id": "free", "label": "Free" },
+        { "id": "starter", "label": "Starter" },
+        { "id": "enterprise", "label": "Enterprise" }
+      ],
+      "description": null,
+      "is_system": false,
+      "is_required": false,
+      "default_value": null
+    }
+  ]
+}
+```
+</ResponseExample>
