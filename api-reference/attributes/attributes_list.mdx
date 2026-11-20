@@ -48,6 +48,12 @@ Use this endpoint to inspect the available fields on any core CRM entity. It ret
     <ResponseField name="is_required" type="boolean">
       Whether this attribute is marked mandatory.
     </ResponseField>
+    <ResponseField name="is_read_only" type="boolean">
+      `true` if this attribute is computed or system-governed and cannot be edited by the user.
+    </ResponseField>
+    <ResponseField name="is_editable" type="boolean">
+      `true` if this attribute can be updated in `attributes` payloads.
+    </ResponseField>
   </Expandable>
 </ResponseField>
 
