@@ -1,0 +1,78 @@
+---
+title: "Update Deal"
+description: "Modify deal parameters, monetary value, expected close date, or custom attributes."
+api: "PUT /deals/{id}"
+---
+
+### Path Parameters
+
+<ParamField path="id" type="string" required>
+  The unique UUID of the deal to update.
+</ParamField>
+
+### Request Body
+
+<ParamField body="title" type="string">
+  Updated title for the deal.
+</ParamField>
+
+<ParamField body="value" type="number">
+  Updated monetary value.
+</ParamField>
+
+<ParamField body="currency" type="string">
+  Currency code (e.g., `USD`, `EUR`).
+</ParamField>
+
+<ParamField body="close_date" type="string">
+  Updated close date in `YYYY-MM-DD` format.
+</ParamField>
+
+<ParamField body="company_id" type="string">
+  Re-assign to a different company record.
+</ParamField>
+
+<ParamField body="contact_id" type="string">
+  Re-assign primary contact.
+</ParamField>
+
+<ParamField body="notes" type="string">
+  Updated notes or summary.
+</ParamField>
+
+<ParamField body="attributes" type="object">
+  Updated custom attributes or field values.
+</ParamField>
+
+<RequestExample>
+
+```json Request
+{
+  "value": 55000,
+  "close_date": "2026-12-20",
+  "notes": "Expanded scope to include premium multi-region support."
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "deal": {
+      "id": "deal-9812-uuid",
+      "title": "Global Tech Licensing",
+      "value": 55000,
+      "currency": "USD",
+      "status": "open",
+      "close_date": "2026-12-20",
+      "updated_at": "2026-11-20T12:10:00.000Z"
+    }
+  }
+}
+```
+
+</ResponseExample>

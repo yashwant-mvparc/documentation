@@ -1,0 +1,26 @@
+---
+title: "Delete Deal"
+description: "Permanently soft-delete a deal opportunity and archive its associations."
+api: "DELETE /deals/{id}"
+---
+
+### Path Parameters
+
+<ParamField path="id" type="string" required>
+  The unique UUID of the deal to delete.
+</ParamField>
+
+### Response
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "message": "Deal deleted"
+  }
+}
+```
+
+</ResponseExample>

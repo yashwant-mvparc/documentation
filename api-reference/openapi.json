@@ -7,8 +7,12 @@
   },
   "servers": [
     {
-      "url": "https://api.syntr.io/api/v1/email-marketing",
-      "description": "All API clusters are hosted on managed instances with SSL/TLS 1.3 encryption."
+      "url": "https://api-prod.syntr.co/api/v1/email-marketing",
+      "description": "Email Marketing & Transactional API"
+    },
+    {
+      "url": "https://api-prod.syntr.co/api/v1/crm",
+      "description": "CRM & Deals API"
     }
   ],
   "security": [
@@ -2000,6 +2004,687 @@
                 "example": {
                   "id": "list-1234",
                   "name": "Marketing Leads"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deals": {
+      "get": {
+        "summary": "List Deals",
+        "description": "Fetch deals across pipelines with stage breakdown, filtering, and summary metrics.",
+        "tags": [
+          "Deals & Pipelines"
+        ],
+        "operationId": "deals_list",
+        "parameters": [
+          {
+            "name": "pipeline_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by pipeline UUID"
+          },
+          {
+            "name": "stage_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by stage UUID"
+          },
+          {
+            "name": "owner_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by owner UUID"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search keyword"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "open",
+                "won",
+                "lost"
+              ]
+            },
+            "description": "Filter by status"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deals retrieved successfully",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "pipeline": {
+                      "id": "uuid",
+                      "name": "Standard Sales Pipeline"
+                    },
+                    "stages": [
+                      {
+                        "id": "stg-1",
+                        "name": "Lead",
+                        "position": 0,
+                        "probability": 10
+                      }
+                    ],
+                    "board": [],
+                    "deals": []
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Deal",
+        "description": "Create a new deal opportunity, set value, assign to a pipeline stage, and link company or contact records.",
+        "tags": [
+          "Deals & Pipelines"
+        ],
+        "operationId": "deals_create",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "title"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Deal title"
+                  },
+                  "value": {
+                    "type": "number",
+                    "description": "Monetary value"
+                  },
+                  "currency": {
+                    "type": "string",
+                    "default": "USD"
+                  },
+                  "pipeline_id": {
+                    "type": "string",
+                    "description": "Pipeline UUID"
+                  },
+                  "stage_id": {
+                    "type": "string",
+                    "description": "Stage UUID"
+                  },
+                  "close_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "Associated company UUID"
+                  },
+                  "contact_id": {
+                    "type": "string",
+                    "description": "Associated primary contact UUID"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "title": "Global Tech Licensing",
+                "value": 48000,
+                "currency": "USD",
+                "close_date": "2026-12-15",
+                "notes": "Decision expected before Q4 ends."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deal created successfully",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "deal": {
+                      "id": "deal-9812-uuid",
+                      "title": "Global Tech Licensing",
+                      "value": 48000,
+                      "currency": "USD",
+                      "status": "open"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deals/{id}": {
+      "get": {
+        "summary": "Get Deal Details",
+        "description": "Retrieve comprehensive details for a deal, including stage, associated company, primary contact, and full contact roster.",
+        "tags": [
+          "Deals & Pipelines"
+        ],
+        "operationId": "deals_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Deal UUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deal details retrieved",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "deal": {
+                      "id": "deal-9812-uuid",
+                      "title": "Global Tech Licensing",
+                      "value": 48000,
+                      "currency": "USD",
+                      "status": "open"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Deal",
+        "description": "Modify deal parameters, monetary value, expected close date, or custom attributes.",
+        "tags": [
+          "Deals & Pipelines"
+        ],
+        "operationId": "deals_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Deal UUID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "number"
+                  },
+                  "close_date": {
+                    "type": "string"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "value": 55000,
+                "close_date": "2026-12-20"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deal updated",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "deal": {
+                      "id": "deal-uuid",
+                      "value": 55000
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Deal",
+        "description": "Permanently soft-delete a deal opportunity and archive its associations.",
+        "tags": [
+          "Deals & Pipelines"
+        ],
+        "operationId": "deals_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Deal UUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deal deleted",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "message": "Deal deleted"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deals/{id}/stage": {
+      "put": {
+        "summary": "Move Deal Stage",
+        "description": "Progress a deal to a new stage in its sales pipeline, updating stage probability and transition history.",
+        "tags": [
+          "Deals & Pipelines"
+        ],
+        "operationId": "deals_move_stage",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Deal UUID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "stage_id"
+                ],
+                "properties": {
+                  "stage_id": {
+                    "type": "string",
+                    "description": "Destination stage UUID"
+                  }
+                }
+              },
+              "example": {
+                "stage_id": "stage-proposal-uuid"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deal moved to new stage",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "deal": {
+                      "id": "deal-uuid",
+                      "stage_id": "stage-proposal-uuid"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deals/{id}/won": {
+      "post": {
+        "summary": "Mark Deal as Won",
+        "description": "Close a deal as Won, recording final revenue, close timestamp, and updating CRM sales reports.",
+        "tags": [
+          "Deals & Pipelines"
+        ],
+        "operationId": "deals_mark_won",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Deal UUID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "actual_revenue": {
+                    "type": "number"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "actual_revenue": 55000,
+                "notes": "Contract signed"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deal marked won",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "deal": {
+                      "id": "deal-uuid",
+                      "status": "won"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deals/{id}/lost": {
+      "post": {
+        "summary": "Mark Deal as Lost",
+        "description": "Close a deal as Lost, recording lost reason, feedback, and timestamp for conversion analysis.",
+        "tags": [
+          "Deals & Pipelines"
+        ],
+        "operationId": "deals_mark_lost",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Deal UUID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "lost_reason"
+                ],
+                "properties": {
+                  "lost_reason": {
+                    "type": "string"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "lost_reason": "budget",
+                "notes": "Postponed until next year"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deal marked lost",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "deal": {
+                      "id": "deal-uuid",
+                      "status": "lost"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deals/{id}/activities": {
+      "get": {
+        "summary": "Get Deal Activities",
+        "description": "Retrieve chronological activity timeline for a deal.",
+        "tags": [
+          "Deals & Pipelines"
+        ],
+        "operationId": "deals_get_activities",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Deal UUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activities retrieved",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "activities": []
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add Deal Activity",
+        "description": "Record a new call, meeting, note, or email on the deal timeline.",
+        "tags": [
+          "Deals & Pipelines"
+        ],
+        "operationId": "deals_create_activity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Deal UUID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "title"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "note",
+                      "call",
+                      "email",
+                      "meeting",
+                      "task"
+                    ]
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "type": "call",
+                "title": "Discovery Call",
+                "description": "Reviewed requirements"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Activity recorded",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "activity": {
+                      "id": "act-uuid",
+                      "title": "Discovery Call"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pipelines": {
+      "get": {
+        "summary": "List Pipelines",
+        "description": "Retrieve all sales pipelines and their configured stages, ordering, and win probabilities.",
+        "tags": [
+          "Deals & Pipelines"
+        ],
+        "operationId": "pipelines_list",
+        "responses": {
+          "200": {
+            "description": "Pipelines retrieved",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "pipelines": []
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Pipeline",
+        "description": "Create a new sales pipeline with custom stages, ordering, and default win probabilities.",
+        "tags": [
+          "Deals & Pipelines"
+        ],
+        "operationId": "pipelines_create",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "stages": {
+                    "type": "array"
+                  }
+                }
+              },
+              "example": {
+                "name": "Enterprise Sales Pipeline"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Pipeline created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "data": {
+                    "pipeline": {
+                      "id": "pipe-uuid",
+                      "name": "Enterprise Sales Pipeline"
+                    }
+                  }
                 }
               }
             }

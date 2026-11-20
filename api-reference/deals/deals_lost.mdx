@@ -1,0 +1,51 @@
+---
+title: "Mark Deal as Lost"
+description: "Close a deal as Lost, recording lost reason, feedback, and timestamp for conversion analysis."
+api: "POST /deals/{id}/lost"
+---
+
+### Path Parameters
+
+<ParamField path="id" type="string" required>
+  The unique UUID of the deal to mark as lost.
+</ParamField>
+
+### Request Body
+
+<ParamField body="lost_reason" type="string" required>
+  Reason for losing the opportunity (e.g., `budget`, `competitor`, `timeline`, `feature_gap`).
+</ParamField>
+
+<ParamField body="notes" type="string">
+  Detailed explanation or prospect feedback.
+</ParamField>
+
+<RequestExample>
+
+```json Request
+{
+  "lost_reason": "budget",
+  "notes": "Prospect decided to postpone migration project until next fiscal year."
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "deal": {
+      "id": "deal-9812-uuid",
+      "title": "Global Tech Licensing",
+      "status": "lost",
+      "lost_reason": "budget",
+      "lost_at": "2026-11-20T12:15:00.000Z"
+    }
+  }
+}
+```
+
+</ResponseExample>

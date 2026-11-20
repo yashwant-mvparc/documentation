@@ -95,6 +95,22 @@
               "api-reference/transactional/transactional_add_contact",
               "api-reference/transactional/transactional_get_list"
             ]
+          },
+          {
+            "group": "Deals & Pipelines",
+            "pages": [
+              "api-reference/deals/deals_list",
+              "api-reference/deals/deals_create",
+              "api-reference/deals/deals_get",
+              "api-reference/deals/deals_update",
+              "api-reference/deals/deals_stage",
+              "api-reference/deals/deals_won",
+              "api-reference/deals/deals_lost",
+              "api-reference/deals/deals_delete",
+              "api-reference/deals/deals_activities",
+              "api-reference/deals/pipelines_list",
+              "api-reference/deals/pipelines_create"
+            ]
           }
         ]
       }

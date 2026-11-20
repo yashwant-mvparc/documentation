@@ -1,0 +1,90 @@
+---
+title: "Create Deal"
+description: "Create a new deal opportunity, set value, assign to a pipeline stage, and link company or contact records."
+api: "POST /deals"
+---
+
+### Request Body
+
+<ParamField body="title" type="string" required>
+  The name or title of the deal opportunity (e.g., `Acme Annual Contract`).
+</ParamField>
+
+<ParamField body="value" type="number">
+  The monetary value or deal size. Defaults to `0`.
+</ParamField>
+
+<ParamField body="currency" type="string">
+  Currency code (e.g., `USD`, `EUR`, `INR`). Defaults to `USD`.
+</ParamField>
+
+<ParamField body="pipeline_id" type="string">
+  UUID of the target sales pipeline. If omitted, default pipeline is used.
+</ParamField>
+
+<ParamField body="stage_id" type="string">
+  UUID of the pipeline stage. If omitted, placed in the first stage.
+</ParamField>
+
+<ParamField body="contact_id" type="string">
+  UUID of the primary contact record linked to this deal.
+</ParamField>
+
+<ParamField body="company_id" type="string">
+  UUID of the company record associated with this deal.
+</ParamField>
+
+<ParamField body="close_date" type="string">
+  Expected closing date in `YYYY-MM-DD` format.
+</ParamField>
+
+<ParamField body="probability" type="number">
+  Win probability percentage (0 to 100). If omitted, stage probability is used.
+</ParamField>
+
+<ParamField body="notes" type="string">
+  Initial notes or background description for the deal.
+</ParamField>
+
+<ParamField body="custom" type="object">
+  Optional custom fields and attributes defined on the deals object.
+</ParamField>
+
+<RequestExample>
+
+```json Request
+{
+  "title": "Global Tech Licensing",
+  "value": 48000,
+  "currency": "USD",
+  "close_date": "2026-12-15",
+  "contact_id": "contact-7712-uuid",
+  "company_id": "company-9910-uuid",
+  "notes": "Met at SaaS Summit. Decision expected before Q4 ends."
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "deal": {
+      "id": "deal-9812-uuid",
+      "title": "Global Tech Licensing",
+      "value": 48000,
+      "currency": "USD",
+      "pipeline_id": "pipeline-1100-uuid",
+      "stage_id": "stage-lead-uuid",
+      "status": "open",
+      "close_date": "2026-12-15",
+      "created_at": "2026-11-20T12:00:00.000Z"
+    }
+  }
+}
+```
+
+</ResponseExample>

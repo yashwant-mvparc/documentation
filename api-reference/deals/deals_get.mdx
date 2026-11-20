@@ -1,0 +1,61 @@
+---
+title: "Get Deal Details"
+description: "Retrieve comprehensive details for a deal, including stage, associated company, primary contact, and full contact roster."
+api: "GET /deals/{id}"
+---
+
+### Path Parameters
+
+<ParamField path="id" type="string" required>
+  The unique UUID of the deal.
+</ParamField>
+
+### Response
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "deal": {
+      "id": "deal-9812-uuid",
+      "title": "Global Tech Licensing",
+      "value": 48000,
+      "currency": "USD",
+      "status": "open",
+      "pipeline": {
+        "id": "pipeline-1100-uuid",
+        "name": "Standard Sales Pipeline"
+      },
+      "stage": {
+        "id": "stage-proposal-uuid",
+        "name": "Proposal Sent",
+        "probability": 60
+      },
+      "company": {
+        "id": "company-9910-uuid",
+        "name": "Global Tech Corp"
+      },
+      "primary_contact": {
+        "id": "contact-7712-uuid",
+        "name": "Sarah Connor",
+        "email": "sarah@globaltech.com"
+      },
+      "contacts": [
+        {
+          "id": "contact-7712-uuid",
+          "name": "Sarah Connor",
+          "email": "sarah@globaltech.com",
+          "role": "Decision Maker"
+        }
+      ],
+      "close_date": "2026-12-15",
+      "created_at": "2026-11-20T12:00:00.000Z",
+      "updated_at": "2026-11-20T12:05:00.000Z"
+    }
+  }
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,91 @@
+---
+title: "List Deals"
+description: "Fetch deals across pipelines with stage breakdown, filtering, and summary metrics."
+api: "GET /deals"
+---
+
+### Query Parameters
+
+<ParamField query="pipeline_id" type="string">
+  Filter deals by specific pipeline UUID. If omitted, default pipeline is returned.
+</ParamField>
+
+<ParamField query="stage_id" type="string">
+  Filter deals by a specific stage UUID.
+</ParamField>
+
+<ParamField query="owner_id" type="string">
+  Filter deals by assigned team member UUID.
+</ParamField>
+
+<ParamField query="search" type="string">
+  Search keyword in deal title, notes, or company name.
+</ParamField>
+
+<ParamField query="status" type="string">
+  Filter by status: `open`, `won`, or `lost`.
+</ParamField>
+
+### Response
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "pipeline": {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "name": "Standard Sales Pipeline"
+    },
+    "stages": [
+      {
+        "id": "stage-lead-uuid",
+        "name": "Lead",
+        "position": 0,
+        "probability": 10
+      },
+      {
+        "id": "stage-proposal-uuid",
+        "name": "Proposal Sent",
+        "position": 1,
+        "probability": 60
+      }
+    ],
+    "board": [
+      {
+        "stage": {
+          "id": "stage-lead-uuid",
+          "name": "Lead"
+        },
+        "deals": [
+          {
+            "id": "deal-9811-uuid",
+            "title": "Enterprise Cloud Deal",
+            "value": 25000,
+            "currency": "USD",
+            "status": "open",
+            "stage_id": "stage-lead-uuid",
+            "probability": 10,
+            "close_date": "2026-12-31"
+          }
+        ],
+        "count": 1,
+        "value": 25000
+      }
+    ],
+    "deals": [
+      {
+        "id": "deal-9811-uuid",
+        "title": "Enterprise Cloud Deal",
+        "value": 25000,
+        "currency": "USD",
+        "status": "open",
+        "stage_id": "stage-lead-uuid"
+      }
+    ]
+  }
+}
+```
+
+</ResponseExample>

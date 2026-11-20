@@ -1,0 +1,52 @@
+---
+title: "List Pipelines"
+description: "Retrieve all sales pipelines and their configured stages, ordering, and win probabilities."
+api: "GET /pipelines"
+---
+
+### Response
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {
+    "pipelines": [
+      {
+        "id": "pipeline-1100-uuid",
+        "name": "Standard Sales Pipeline",
+        "is_default": true,
+        "stages": [
+          {
+            "id": "stage-lead-uuid",
+            "name": "Lead",
+            "position": 0,
+            "probability": 10
+          },
+          {
+            "id": "stage-qual-uuid",
+            "name": "Qualified",
+            "position": 1,
+            "probability": 30
+          },
+          {
+            "id": "stage-prop-uuid",
+            "name": "Proposal",
+            "position": 2,
+            "probability": 60
+          },
+          {
+            "id": "stage-won-uuid",
+            "name": "Won",
+            "position": 3,
+            "probability": 100
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+</ResponseExample>
